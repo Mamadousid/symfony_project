@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+     
+    {# L'encodage de caractères #} 
+    <meta charset="UTF-8">
+
+    {# Le minimum de responsive design #}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {# Le titre de chaque page dans l'onglet #}
+    <title>Inscription - Le Restaurant Toque'OR</title>
+
+    {# La description de chaque page #}
+    <meta name="description" content="Inscrivez-vous">
+
+    {# Les balises utiles pour le SEO #}
+    <meta name="robots" content="index, follow">
+
+    <meta name="author" content="dwwm">
+    <meta name="publisher" content="dwwm">
+
+    {# La Favicon #}
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    {# La feuille de style Boostrap 5 #}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="h-100" style="background-color: black">
+
+        <main class="container my-5">
+            <div class="row">
+                 <div class="col-lg-7 text-center mt-4">
+                    <img src="{{asset('images/imageregister.png')}}" class="img-fluid" alt="">
+                 </div>
+                 <div class="col-lg-5">
+
+                    {% for flash_error in app.flashes('verify_email_error') %}
+                           <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                    {% endfor %}
+                    
+                           
+                      {{ form_start(registrationForm) }}
+                           <div class="row">
+                                <div class="col-lg-6 mb-3">
+                                       <label for="registration_form_firstName" class="text-white">Prénom</label>
+                                       <div class="text-danger">{{ form_errors(registrationForm.firstName) }}</div>
+                                       {{ form_widget(registrationForm.firstName, {'attr':{'class':'form-control', 'autofucus':'autofucus'}}) }}
+                                </div>
+                           
+                                <div class="col-lg-6">
+                                  <label for="registration_form_lastName" class="text-white">Nom</label>
+                                      <div class="text-danger">{{ form_errors(registrationForm.lastName) }}</div>
+                                       {{ form_widget(registrationForm.lastName, {'attr':{'class':'form-control'}}) }}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                 <label for="registration_form_email" class="text-white">Email</label>
+                                    <div class="text-danger">{{ form_errors(registrationForm.email) }}</div>
+                                       {{ form_widget(registrationForm.email, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                             <div class="mb-3">
+                                 <label for="registration_form_password_first" class="text-white">Mot de passe</label>
+                                    <div class="text-danger">{{ form_errors(registrationForm.password.first) }}</div>
+                                       {{ form_widget(registrationForm.password.first, {'attr':{'class':'form-control','placeholder':"Au moins 12 caractères"}}) }}
+                                       <small class="text-white"><em>Le mot de passe doit contenir au moins 12 caractères.</em></small>
+                            </div>
+                             <div class="mb-3">
+                                 <label for="registration_form_password_second" class="text-white">Confirmation du mot de passe</label>
+                                       {{ form_widget(registrationForm.password.second, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                             <div class="mb-3">
+                               <label for="registration_form_agreeTerms" class="text-white">
+                                   {{ form_widget(registrationForm.agreeTerms) }}
+                                   Lire et accepter <a href="#" data-bs-toggle="modal" data-bs-target="#agreeTermsModal">les conditions générales d'utilisation</a>
+                               </label>
+                          
+                            
+
+                               <!-- Modal -->
+                               <div class="modal fade" id="agreeTermsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                 <div class="modal-dialog modal-dialog-scrollable">
+                                   <div class="modal-content">
+                                     <div class="modal-header">
+                                       <h1 class="modal-title fs-5" id="exampleModalLabel">Les conditions générales d'utlisation</h1>
+                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                     </div>
+                                     <div class="modal-body">
+                                         <p>
+                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis veritatis blanditiis quia fugiat culpa maiores aliquid id, doloribus voluptas aspernatur quaerat quod assumenda iure officia? Labore non modi eos? Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore porro, sed alias corrupti atque quae velit quia tempora. Sed labore, ex dolorum rerum repellendus eum aut reiciendis amet ab obcaecati. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis labore quisquam, non doloribus illo iure asperiores temporibus, error dolorem distinctio odit accusantium. Non, maiores quo? Quam earum minima quod officia! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut doloremque sunt quo, a necessitatibus iure enim vitae soluta. Nihil voluptatibus reiciendis illum dolorum accusamus sunt voluptas sapiente laboriosam a reprehenderit?
+                                         </p>
+
+                                        <p>
+                                           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga quidem dolorum expedita. Beatae, temporibus recusandae quam, aut odit doloremque dolore repudiandae impedit quisquam non esse illo. Rem doloribus voluptatem totam!
+                                        </p>
+                                     </div>
+                                     <div class="modal-footer">
+                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                       
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                            </div>
+                            <div>
+                               <input formnovalidate type="submit" class="btn btn-warning shadow" value="S'inscrire">
+                            </div>
+                      {{ form_end(registrationForm) }}
+                 </div>
+            </div>
+        </main>
+
+
+
+
+
+
+ 
+
+
+
+    {# Le script de Boostrap #}
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+
+{# {% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1>Register</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %} #}
