@@ -45,8 +45,27 @@
         <li><a href="#">Menu</a></li>
         <li><a href="#">Contact</a></li>
         <li><a href="#">Evennement</a></li>
-        <a href="#" class="btn-connect">Connexion</a>
-        <a href="{{path('visitor_registration_register')}}" class="btn-reservation">Reserver</a>
+
+       
+          
+             {% if app.user %}
+                <li class="nav-item">
+                <a href="{{path('app_logout')}}" class="btn-connect">Déconnexion</a>
+                </li>
+
+             {% else %}
+                 <li class="nav-item">
+                     <a href="{{path('visitor_authentication_login')}}" class="btn-connect" style="background-color: #562B05;padding: 10px 20px">COMPTE</a>
+                 </li>
+
+                 <li class="nav-item">
+                     <a href="{{path('visitor_registration_register')}}" class="btn-reservation" style="background-color: #786518;padding: 10px 20px">RESERVER</a>
+                 </li>
+             {% endif %}
+
+           
+         
+       
    </ul>
 </header>
 

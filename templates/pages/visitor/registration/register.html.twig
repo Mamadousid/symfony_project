@@ -41,7 +41,7 @@
                  <div class="col-lg-7 text-center mt-4">
                     <img src="{{asset('images/imageregister.png')}}" class="img-fluid" alt="">
                  </div>
-                 <div class="col-lg-5">
+                 <div class="col-lg-5 d-flex flex-column justify-content-center align-items-center">
 
                     {% for flash_error in app.flashes('verify_email_error') %}
                            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
@@ -112,9 +112,14 @@
                                </div>
                             </div>
                             <div>
-                               <input formnovalidate type="submit" class="btn btn-warning shadow" value="S'inscrire">
+                               <input formnovalidate type="submit" class="w-100 btn btn-warning shadow" value="S'inscrire">
                             </div>
                       {{ form_end(registrationForm) }}
+
+                    <div class="text-center mt-3">
+                      <p class="text-white">Vous avez déja un compte ? <a href="{{path('visitor_authentication_login')}}">Connectez-vous</a></p>
+                      <p><a href="{{path('visitor_wellcome_index')}}">Retour à l'accueil</a></p>
+                    </div>  
                  </div>
             </div>
         </main>
@@ -132,23 +137,3 @@
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
-
-{# {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-
-    <h1>Register</h1>
-
-    {{ form_errors(registrationForm) }}
-
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-{% endblock %} #}
