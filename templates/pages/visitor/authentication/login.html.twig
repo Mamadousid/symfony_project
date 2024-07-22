@@ -68,14 +68,23 @@
     
     <input type="hidden" name="_csrf_token"  value="{{ csrf_token('authenticate') }}">
 
-    <div class="text-white checkbox mb-3">
-        <label>
-            <input type="checkbox" name="_remember_me"> Se souvenir
-        </label>
+    <div class="mb-3">
+       <div class="row">
+          <div class="text-white col-md-6 my-1">
+               <label>
+                   <input  type="checkbox" name="_remember_me" checked>
+                      Se souvenir de moi
+               </label>
+          </div>
+          <div class="col-md-6 text-lg-end">
+              <a href="">Mot de passe oublié ?</a>
+          </div>
+       
+       </div> 
     </div>
     
     <div>
-       <input formnovalidate type="submit" class="btn btn-warning shadow" value="Se connecter">
+       <input formnovalidate type="submit" class="w-100 btn btn-warning shadow" value="Se connecter">
     </div>
     
    </form>
