@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {# Le titre de chaque page dans l'onglet #}
-    <title>{% block title %}{% endblock %} - Le Restaurant Toque'OR</title>
+    <title>{% block title %}{% endblock %}Réinitiasation du mot de passe</title>
 
     {# La description de chaque page #}
     <meta name="description" content="{% block description %}{% endblock %}">
@@ -78,12 +78,51 @@
 
 
     {# Le contenu spécifique à chaque page #}
-    {% block main %}{% endblock %}
+    {% block main %}
 
 
-    <footer class="text-center">
+
+
+    <main>
+        <div class="container">
+             <h1 class="text-center my-3 display-5">Réinitialisation du mot de passe</h1>
+
+             <div class="row mt-5">
+                 <div class="col-md-6 mx-auto shadow p-4">
+                         {% for flash_error in app.flashes('reset_password_error') %}
+                              <div class="text-center alert alert-danger" role="alert">{{ flash_error }}</div>
+                         {% endfor %}
+
+                     {{ form_start(requestForm) }}
+                         <div class="mb-3">
+                               <label for="reset_password_request_form_email">Email</label>
+                               {{ form_widget(requestForm.email, {'attr': {'class':'form-control', 'autofocus':'autofocus'}}) }}
+                                 <small>
+                                      <em>Veuillez entrez votre adresse email afin que nous vous envoyons le lien de réinitialisation du mot de passe.</em>
+                                 </small>
+                          </div>
+                        <div>
+                           <input type="submit" class="btn btn-primary shadow" value="Réinitialiser">
+                        </div>
+
+                       
+                     {{ form_end(requestForm) }}
+
+                 </div>
+             </div>
+        </div>
+    </main>
+
+
+    {% endblock %}
+
+
+      <footer class="text-center">
          <p>dwwm</p>
     </footer>
+
+
+  
 
 
 
