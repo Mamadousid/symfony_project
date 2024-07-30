@@ -13,6 +13,7 @@
 p{
     font-weight: 300;
     color: #111;
+    text-align: center;
 }
 
 
@@ -118,4 +119,53 @@ header{
 }
 .btn2:hover{
     letter-spacing: 4px;
+}
+
+
+.block-title{
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 7.5px;
+    font-weight: normal;
+}
+
+.block-title-menu{
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 7.5px;
+    font-weight: normal;
+    margin: 50px;
+}
+
+.block-text{
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: left;
+    margin-top: 0;
+}
+
+.block-text-menu{
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: center;
+    
+}
+
+.block_generic_button{
+    font-size: 15px;
+    width: 253px;
+    letter-spacing: 2.8px;
+    height: 55px;
+    display: inline-block;
+    color: #786518;
+    border: 2px solid #786518;
+    text-decoration: none;
+    line-height: 54px;
+    text-transform: uppercase;
+    margin: 55px 0 0 0;
+}
+
+.block_generic_button:hover{
+     background-color: #786518;
+     color: #fff;
 }
