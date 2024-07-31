@@ -54,7 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank(message:'L\'email est obligatoire')]
     #[Assert\Length(
         max: 180,
-        maxMessage: 'Le nom ne doit pas dépasser {{ limit }} caractères.',
+        maxMessage: "L'email ne doit pas dépasser {{ limit }} caractères.",
     )]
     #[Assert\Email(
         message: 'L\'email {{ value }} est invalide.',
