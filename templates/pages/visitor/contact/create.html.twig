@@ -19,9 +19,10 @@
                        <h2 class="block-title my-5">Contactez-moi</h2>
                       <p>Restaurant Toque'Or</p>
 
-                      <p><i class="fa-solid fa-envelope"></i> : restaurant-toqueor@gmail.com</p>
-                      
-                      <p><i class="fa-solid fa-phone"></i> : 07 02 03 04 05</i></p>
+                      <p><i class="fa-solid fa-envelope"></i> : {{setting.email}}</p>
+                      {% if setting.phone is not empty %}
+                         <p><i class="fa-solid fa-phone"></i> : {{setting.phone}}</i></p>
+                      {% endif %}
                      </div>
                  </div>
 
