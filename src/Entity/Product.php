@@ -56,6 +56,7 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+    
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?User $user = null;
 
