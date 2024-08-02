@@ -27,6 +27,9 @@
         {# Ma feuille de style #}
         <link rel="stylesheet" href="/css/app.css">
 
+        {# Beautiful replacement for select boxes #}
+        {% block select2 %}{% endblock %}
+
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
@@ -210,9 +213,9 @@
                                 </a>
                                 </li>
                                 <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
+                                <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('admin_user_index')}}">
                                      <i class="fa-solid fa-user"></i>
-                                    Clients
+                                    Les utilisateurs
                                 </a>
                                 </li>
                                 
