@@ -32,18 +32,18 @@ class UserController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) 
+        if ( $form->isSubmitted() && $form->isValid() ) 
         {
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash("success", "Les rôles de {$user->getFirstName()} {$user->getLastName()} ont étés modifié avec succès.");
+            $this->addFlash("success", "Les rôles de {$user->getFirstName()} {$user->getLastName()} ont été modifié avec succès.");
 
             return $this->redirectToRoute("admin_user_index");
         }
 
         return $this->render('pages/admin/user/edit_roles.html.twig', [
-            'form' => $form->createView()
+           'form' => $form->createView() 
         ]);
     }
 
@@ -52,6 +52,15 @@ class UserController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete_user_'.$user->getId(), $request->request->get('csrf_token'))) 
         {
+            $products = $user->getProducts();
+
+            foreach ($products as $product) 
+            {
+                $product->setUser(null);
+            }
+
+            $this->container->get('security.token_storage')->setToken(null);
+
             $em->remove($user);
             $em->flush();
 
