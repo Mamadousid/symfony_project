@@ -16,14 +16,14 @@ class SettingController extends AbstractController
     #[Route('admin/setting', name: 'admin_setting_index', methods:['GET'])]
     public function index(SettingRepository $settingRepository): Response
     {
-        $setting = $settingRepository->find(1);
+        $setting = $settingRepository->find(3);
 
         return $this->render('pages/admin/setting/index.html.twig', [
             'setting' => $setting,
         ]);
     }
 
-   #[Route('admin/setting/{id}/edit', name: 'admin_setting_edit', methods:['GET', 'PUT'])]
+   #[Route('admin/setting/edit', name: 'admin_setting_edit', methods:['GET', 'PUT'])]
    public function edit(Setting $setting, Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(SettingFormType::class, $setting, [

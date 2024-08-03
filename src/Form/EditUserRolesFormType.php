@@ -16,13 +16,13 @@ class EditUserRolesFormType extends AbstractType
         $builder
             ->add('roles', ChoiceType::class, [
                 'constraints' => [
-                    new NotBlank([
+                      new NotBlank([
                         "message" => "Le rôle est obligatoire."
-                    ])
-                    ],
+                      ])
+                ],
                 'choices' => [
-                    'Role utilisateur' => "ROLE USER",
-                    'Role administrateur' => "ROLE ADMIN",
+                    'Role utilisateur' => "ROLE_USER",
+                    'Role administrateur' => "ROLE_ADMIN",
                 ],
                 'expanded' => false,
                 'multiple' => true
