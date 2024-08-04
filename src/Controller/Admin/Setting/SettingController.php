@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SettingController extends AbstractController
 {
-    #[Route('admin/setting', name: 'admin_setting_index', methods:['GET'])]
+    #[Route('/admin/setting', name: 'admin_setting_index', methods:['GET'])]
     public function index(SettingRepository $settingRepository): Response
     {
         $setting = $settingRepository->find(3);
@@ -23,7 +23,7 @@ class SettingController extends AbstractController
         ]);
     }
 
-   #[Route('admin/setting/edit', name: 'admin_setting_edit', methods:['GET', 'PUT'])]
+   #[Route('/admin/setting/{id}/edit', name: 'admin_setting_edit', methods:['GET', 'PUT'])]
    public function edit(Setting $setting, Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(SettingFormType::class, $setting, [
@@ -37,7 +37,7 @@ class SettingController extends AbstractController
             $em->persist($setting);
             $em->flush();
 
-            $this->addFlash("success","Les paramètres ont bien été modifiés");
+            $this->addFlash("success","Les paramètres ont bien été modifiés.");
 
             return $this->redirectToRoute('admin_setting_index');
         }
