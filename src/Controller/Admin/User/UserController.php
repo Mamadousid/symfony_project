@@ -23,7 +23,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/user/{id<\d+>}/edit/roles', name: 'admin_user_edit_roles', methods:['GET', 'PUT'])]
+    #[Route('/admin/user/{id}/edit/roles', name: 'admin_user_edit_roles', methods:['GET', 'PUT'])]
     public function editRoles(User $user, Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(EditUserRolesFormType::class, $user, [
