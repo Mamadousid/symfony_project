@@ -234,22 +234,9 @@
                                  </li>
                                 <li class="nav-item">
                                 <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('admin_contact_index')}}">
-                                    <i class="fa-solid fa-phone"></i>
-                                    Contact
+                                    <i class="fa-solid fa-envelope"></i>
+                                    Messages
                                 </a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
-                                    <i class="fa-solid fa-comment"></i>
-                                    Les avis
-                                </a>
-                                </li>
-                                <li class="nav-item">
-                                <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('admin_setting_index')}}">
-                                    <i class="fa-solid fa-gear"></i>
-                                    Paramètres du site
-                                </a>
-                                </li>
                             </ul>
 
 
@@ -257,24 +244,30 @@
 
                         <ul class="nav flex-column mb-auto">
                              <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="{{path('admin_profile_index')}}">
+                            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('admin_profile_index')}}">
                                 <i class="fa-solid fa-rotate-left"></i>
                                 Mon profil
                             </a>
                             <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="{{path('visitor_wellcome_index')}}">
+                            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('visitor_wellcome_index')}}">
                                 <i class="fa-solid fa-rotate-left"></i>
                                 Retour au site
                             </a>
                             </li>
                              <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="{{path('user_home_index')}}">
+                            <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('user_home_index')}}">
                                 <i class="fa-solid fa-rotate-left"></i>
                                 Espace privé
                             </a>
-                            </li
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('admin_setting_index')}}">
+                                    <i class="fa-solid fa-gear"></i>
+                                    Paramètres du site
+                                </a>
+                                </li>
                             <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center gap-2" href="{{path('app_logout')}}">
+                            <a class="btn btn-danger d-flex align-items-center gap-2" href="{{path('app_logout')}}">
                                 <svg class="bi"><use xlink:href="{{path('app_logout')}}"/></svg>
                                 Déconnexion
                             </a>

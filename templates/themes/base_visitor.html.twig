@@ -64,37 +64,38 @@
              {% if app.user %}
                 {% if is_granted('ROLE_ADMIN') %}
                  <li class="nav-item">
-                      <a href="{{path('admin_home_index')}}" class="btn-connect">Espace admin</a>
+                      <a href="{{path('admin_home_index')}}" class="btn btn-success">Espace admin</a>
                  </li>
                 {% endif %}
 
                 {% if is_granted('ROLE_USER') %}
-                 <li class="nav-item">
-                      <a href="#" class="btn-connect">Réservation</a>
-                 </li>
                   <li class="nav-item">
-                      <a href="{{path('user_home_index')}}" class="btn-connect">Espace user</a>
+                      <a href="{{path('user_home_index')}}" class="btn btn-secondary">Espace user</a>
+                 </li>
+                 <li class="nav-item">
+                      <a href="#" class="btn btn-warning">Réservation</a>
                  </li>
                 {% endif %}
                 
                 
                 <li class="nav-item">
-                <a href="{{path('app_logout')}}" class="btn-connect">Déconnexion</a>
+                <a href="{{path('app_logout')}}" class="btn btn-outline-danger">Déconnexion</a>
                 </li>
 
              {% else %}
                  <li class="nav-item">
-                     <a href="{{path('visitor_authentication_login')}}" class="btn-connect" style="background-color: #562B05;padding: 10px 20px">Compte</a>
+                     <a href="{{path('visitor_authentication_login')}}" class="btn btn-secondary">Compte</a>
                  </li>
 
                  <li class="nav-item">
-                     <a href="{{path('visitor_registration_register')}}" class="btn btn-warning shadow">RESERVER</a>
+                     <a href="{{path('visitor_registration_register')}}" class="btn btn-outline-warning shadow">RESERVER</a>
                  </li>
              {% endif %}
 
         </div>
         </ul>
    </nav>
+   
 
 
 
