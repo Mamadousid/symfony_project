@@ -181,7 +181,7 @@ header{
 
 .menuContainer{
     display: table;
-    background: #ccc no-repeat center center;
+    background-position: left;
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -194,3 +194,14 @@ header{
 .clear {
     clear: both;
 }
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.menu_bars {
+    width: 50%;
+    margin-top: 50px;
+}
+
