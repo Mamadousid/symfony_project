@@ -86,6 +86,12 @@ class Product
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $publishedAt = null;
 
+    #[ORM\Column(nullable:true)]
+    private ?bool $isPublished = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $Ispublished = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -235,5 +241,22 @@ class Product
         $this->publishedAt = $publishedAt;
 
         return $this;
+    }
+
+    public function isIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): static
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
+    }
+
+    public function getIspublished(): ?\DateTimeImmutable
+    {
+        return $this->Ispublished;
     }
 }

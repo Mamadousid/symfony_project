@@ -12,9 +12,9 @@
              <div class="col-md-6 mx-auto">
                    {{form_start(form)}}
                         <div class="mb-3">
-                            <label for="formule_form_number">Numéro</label>
-                            <div class="text-danger">{{ form_errors(form.number) }}</div>
-                            {{ form_widget(form.number, {"attr": {"class":"form-control", "autofocus":"autofocus"}}) }}
+                            <label for="formule_form_name">Type de table</label>
+                            <div class="text-danger">{{ form_errors(form.name) }}</div>
+                            {{ form_widget(form.name, {"attr": {"class":"form-control", "autofocus":"autofocus"}}) }}
                         </div>
                         <div class="mb-3">
                             <label for="formule_form_places">Places</label>

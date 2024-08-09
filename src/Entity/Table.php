@@ -6,7 +6,10 @@ use App\Repository\TableRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+
+#[UniqueEntity(fields: ['name'], message: 'Cette table existe déjà. Veuillez choisir un autre type de table.')]
 #[ORM\Entity(repositoryClass: TableRepository::class)]
 #[ORM\Table(name: '`table`')]
 class Table
@@ -16,13 +19,9 @@ class Table
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Assert\Regex(
-        pattern: "/^[0-9\-\+\s\(\)]{1,20}$/",
-        match: true,
-        message: "Le numéro de téléphone n'est pas valide",
-    )]
-    #[ORM\Column(length: 255)]
-    private ?string $number = null;
+    #[ORM\Column(length: 255, unique: true)]
+    private ?string $name = null;
+
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $disponibilité = null;
@@ -30,7 +29,7 @@ class Table
     #[Assert\Regex(
         pattern: "/^[0-9\-\+\s\(\)]{1,20}$/",
         match: true,
-        message: "Le numéro de téléphone n'est pas valide",
+        message: "Le numéro de la table doit être un nombre",
     )]
     #[ORM\Column(length: 255)]
     private ?string $places = null;
@@ -44,22 +43,12 @@ class Table
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+   
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNumber(): ?string
-    {
-        return $this->number;
-    }
-
-    public function setNumber(string $number): static
-    {
-        $this->number = $number;
-
-        return $this;
-    }
 
     public function getDiponibilité(): ?string
     {
@@ -105,6 +94,18 @@ class Table
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
 }

@@ -41,8 +41,7 @@
                <thead class="table-dark">
                    <tr>
                       <th>Id</th>
-                      <th>Numéro</th>
-                      <th>disponibilité</th>
+                      <th>Type de table</th>
                       <th>Places</th>
                       <th>crée le</th>
                       <th>Modifié le</th>
@@ -53,16 +52,7 @@
                     {% for table in tables %}
                         <tr>
                            <td>{{table.id}}</td>
-                           <td>{{table.number}}</td>
-                           <td>
-                           {{table.disponibilité}}
-                               <form>
-                                   <div class="form-check form-switch">
-                                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                                      <label class="form-check-label" for="flexSwitchCheckChecked">Disponible ?</label>
-                                  </div>
-                               </form>
-                           </td>
+                           <td>{{table.name}}</td>
                            <td>{{table.places}}</td>
                            <td>{{table.createdAt|format_datetime()}}</td>
                            <td>{{table.updatedAt|format_datetime()}}</td>

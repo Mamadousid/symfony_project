@@ -12,7 +12,7 @@ class TableFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('number')
+            ->add('name')
             ->add('places')
         ;
     }
