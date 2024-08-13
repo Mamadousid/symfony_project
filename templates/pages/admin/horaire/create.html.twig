@@ -1,0 +1,37 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Nouvelle horaire{% endblock %}
+
+{% block description %}Nouvelle horaire{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Nouvelle horaire</h1>
+
+    <div class="container mt-5">
+        <div class="row">
+             <div class="col-md-6 mx-auto">
+                   {{form_start(form)}}
+                        <div class="mb-3">
+                            <label for="horaire_form_day">Jour</label>
+                            <div class="text-danger">{{ form_errors(form.day) }}</div>
+                            {{ form_widget(form.day, {"attr": {"class":"form-control", "autofocus":"autofocus"}}) }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="horaire_form_time_open">Heure d'ouverture</label>
+                            <div class="text-danger">{{ form_errors(form.time_open) }}</div>
+                            {{ form_widget(form.time_open, {"attr": {"class":"form-control", "autofocus":"autofocus"}}) }}
+                        </div>
+                         <div class="mb-3">
+                            <label for="horaire_form_time_closed">Heure de fermeture</label>
+                            <div class="text-danger">{{ form_errors(form.time_closed) }}</div>
+                            {{ form_widget(form.time_closed, {"attr": {"class":"form-control", "autofocus":"autofocus"}}) }}
+                        </div>
+                        <div>
+                            <input formnovalidate type="submit" class="btn btn-primary shadow" value="Ajouter">
+                        </div>
+                   {{form_end(form)}}
+             </div>
+        </div>
+    </div>
+
+{% endblock %}

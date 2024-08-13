@@ -13,8 +13,9 @@ class MainController extends AbstractController
     #[Route('/main', name: 'visitor_main_index', methods:['GET'])]
     public function index(productRepository $productRepository): Response
     {
-        $products = $productRepository->findByCategory(11);
+        $products = $productRepository->findAllByCategorie();
         $productsE = $productRepository->findByCategory(10);
+      
        
     
 

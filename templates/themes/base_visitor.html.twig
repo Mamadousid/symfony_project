@@ -65,27 +65,27 @@
              {% if app.user %}
                 {% if is_granted('ROLE_ADMIN') %}
                  <li class="nav-item">
-                      <a href="{{path('admin_home_index')}}" class="btn btn-success">Espace admin</a>
+                      <a href="{{path('admin_home_index')}}" class="btn btn-outline-success">Administrateur</a>
                  </li>
                 {% endif %}
 
                 {% if is_granted('ROLE_USER') %}
                   <li class="nav-item">
-                      <a href="{{path('user_home_index')}}" class="btn btn-secondary">Espace user</a>
+                      <a href="{{path('user_home_index')}}" class="btn btn-outline-secondary">Mon profil</a>
                  </li>
                  <li class="nav-item">
-                      <a href="#" class="btn btn-warning">Réservation</a>
+                      <a href="#" class="btn btn-outline-warning">Réservation</a>
                  </li>
                 {% endif %}
                 
                 
                 <li class="nav-item">
-                <a href="{{path('app_logout')}}" class="btn btn-outline-danger">Déconnexion</a>
+                <a href="{{path('app_logout')}}" class="btn btn-danger">Déconnexion</a>
                 </li>
 
              {% else %}
                  <li class="nav-item">
-                     <a href="{{path('visitor_authentication_login')}}" class="btn btn-secondary">Compte</a>
+                     <a href="{{path('visitor_authentication_login')}}" class="btn btn-outline-secondary">Compte</a>
                  </li>
 
                  <li class="nav-item">
@@ -133,12 +133,14 @@
                   <div class="mb-5">
                     <h3 style="font-size: 13px;">Suivez-nous!</h3>
                     <div>
-                    <a href=""><img class="mx-1" width="30" height="30" src="./images/instagram.png"  alt="Icone réseau social"></a>
-                    <a href=""><img class="mx-1" width="30" height="30" src="./images/snapchat.png"  alt="Icone réseau social"></a>
+                    <a href="https://www.instagram.com/" target="_blank"><img class="mx-1" width="30" height="30" src="./images/instagram.png"  alt="Icone réseau social"></a>
+                    <a href="https://www.snapchat.com/" target="_blank"><img class="mx-1" width="30" height="30" src="./images/snapchat.png"  alt="Icone réseau social"></a>
                     </div>
-                  </div> 
                </div>
             </div>
+              <div id="copyright" class="footer-container">
+	                    © Toque'OR Paris. Tous Droits Réservés / All Rights Reserved.	</div>
+                  </div> 
          </div>
     </footer>
 
