@@ -50,10 +50,11 @@
    {# La barre de navigation#}
    
 
-   <nav class="navbar navbar-expand-lg" style="background-color: #000000">
+   <nav class="navbar navbar-expand-lg" style="background-color: #000000; height: 70px">
    <div class="container-fluid">
-   <a href="{{path('visitor_wellcome_index')}}" class="logo" > Toque'OR</a>
-   <ul class="navbar"> 
+   <a href="{{path('visitor_wellcome_index')}}" ><img class="logo" src="./images/logo.png" alt=""></a>
+   <img class="mobile-img" style="display: none;" src="./images/burger.png" alt="Menu">
+   <ul class="navbar mt-2" style="margin-right: 20px;"> 
         <li><a href="{{path('visitor_wellcome_index')}}">Accueil</a></li>
         <li><a href="{{path('visitor_main_index')}}">Menu</a></li>
         <li><a href="{{path('visitor_contact_create')}}">Contact</a></li>
@@ -64,27 +65,27 @@
              {% if app.user %}
                 {% if is_granted('ROLE_ADMIN') %}
                  <li class="nav-item">
-                      <a href="{{path('admin_home_index')}}" class="btn btn-success">Espace admin</a>
+                      <a href="{{path('admin_home_index')}}" class="btn btn-outline-success">Administrateur</a>
                  </li>
                 {% endif %}
 
                 {% if is_granted('ROLE_USER') %}
                   <li class="nav-item">
-                      <a href="{{path('user_home_index')}}" class="btn btn-secondary">Espace user</a>
+                      <a href="{{path('user_home_index')}}" class="btn btn-outline-secondary">Mon profil</a>
                  </li>
                  <li class="nav-item">
-                      <a href="#" class="btn btn-warning">Réservation</a>
+                      <a href="#" class="btn btn-outline-warning">Réservation</a>
                  </li>
                 {% endif %}
                 
                 
                 <li class="nav-item">
-                <a href="{{path('app_logout')}}" class="btn btn-outline-danger">Déconnexion</a>
+                <a href="{{path('app_logout')}}" class="btn btn-danger">Déconnexion</a>
                 </li>
 
              {% else %}
                  <li class="nav-item">
-                     <a href="{{path('visitor_authentication_login')}}" class="btn btn-secondary">Compte</a>
+                     <a href="{{path('visitor_authentication_login')}}" class="btn btn-outline-secondary">Compte</a>
                  </li>
 
                  <li class="nav-item">
@@ -103,8 +104,44 @@
     {% block main %}{% endblock %}
 
 
-    <footer class="text-center">
-         <p>dwwm</p>
+    <footer class="container-fluid text-center mt-5 p-3" style="background-color: #000000">
+         <div class="container-fluid text-white" >
+            <div class="row">
+               <div class="col-12 col-md-12 col-lg-4">
+                  <h3>Adresse</h3>
+                  <p class="text-footer">Le Toque'OR</p>
+                  <p class="text-footer">56 Boulevard Magenta</p>
+                  <p class="text-footer">75008 Paris</p>
+                  <p class="text-footer">01 01 01 01 01</p>
+               </div>
+
+               <div class="col-12 col-md-12 col-lg-4">
+                   <h3>Horaires</h3>
+                   <p class="text-footer">Lundi-jeu:19h00 à 00h00</p>
+                   <p class="text-footer">Ven:19h00 à 1h</p>
+                   <p class="text-footer">Sam:12h00 à 1h</p>
+                   <p class="text-footer">Dim:12h à 2h</p>
+               </div>
+
+               <div class="col-12 col-md-12 col-lg-4">
+                  <div>
+                   <h3>Juridique</h3>
+                   <div><a class="text-footer" style="font-size: 13px;" href="">Polique de confidentialité</a></div>
+                   <div class="mb-5"><a class="text-footer" style="font-size: 13px;" href="">Mentions légales</a></div>
+                  </div>
+
+                  <div class="mb-5">
+                    <h3 style="font-size: 13px;">Suivez-nous!</h3>
+                    <div>
+                    <a href="https://www.instagram.com/" target="_blank"><img class="mx-1" width="30" height="30" src="./images/instagram.png"  alt="Icone réseau social"></a>
+                    <a href="https://www.snapchat.com/" target="_blank"><img class="mx-1" width="30" height="30" src="./images/snapchat.png"  alt="Icone réseau social"></a>
+                    </div>
+               </div>
+            </div>
+              <div id="copyright" class="footer-container">
+	                    © Toque'OR Paris. Tous Droits Réservés / All Rights Reserved.	</div>
+                  </div> 
+         </div>
     </footer>
 
 </body>

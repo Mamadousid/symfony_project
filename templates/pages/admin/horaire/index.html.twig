@@ -1,0 +1,71 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Liste des horaires{% endblock %}
+
+{% block description %}Liste des horaires{% endblock %}
+
+{# jQuery #}
+{% block jQuery %}
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer">
+     </script>
+{% endblock %}
+
+ {# DataTables #}
+{% block dataTables %}
+    <link href="https://cdn.datatables.net/v/bs5/dt-2.1.2/datatables.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/v/bs5/dt-2.1.2/datatables.min.js"></script>
+    <script>
+      $(document).ready( function () 
+      {
+          $('#table').DataTable({
+            language: {
+                   url: 'https://cdn.datatables.net/plug-ins/2.1.2/i18n/fr-FR.json',
+            },
+          });
+      } );
+</script>
+{% endblock %}
+
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Liste des horaires</h1>
+
+    {% include 'components/alert.html.twig' %}
+
+        <div class="d-flex justify-content-end align-items-center my-3">
+         <a href="{{path('admin_horaire_create')}}" class="btn btn-primary shadow"><i class="fa-solid fa-plus"></i> Nouvelle horaire</a>
+    </div>
+
+    <div class="table-responsive">
+          <table id="table" class="table table-striped table-hover table-bordered text-center">
+               <thead class="table-dark">
+                   <tr>
+                      <th>Id</th>
+                      <th>Jour</th>
+                      <th>Heure d'ouverture</th>
+                      <th>Heure de fermeture</th>
+                      <th>Options</th>
+                   </tr>
+               </thead>
+               <tbody>
+                    {% for horaire in horaires %}
+                        <tr>
+                           <td>{{horaire.id}}</td>
+                           <td>{{horaire.day}}</td>
+                           <td>{{horaire.timeOpen}}</td>
+                           <td>{{horaire.timeclosed}}</td>
+                           
+                           <td>
+                                <a class="mx-2 text-secondary" href="{{path('admin_horaire_edit', {'id':horaire.id})}}"><i class="fas fa-edit"></i></a>
+                                <a onclick="event.preventDefault(); return confirm('Confirmer la suppression?') && document.querySelector('#delete_horaire_{{horaire.id}}_form').submit();" class="mx-2 text-danger" href=""><i class="fa-solid fa-trash"></i></a> 
+                                <form id="delete_horaire_{{horaire.id}}_form" method="POST" action="{{path('admin_horaire_delete', {'id':horaire.id})}}">
+                                   <input type="hidden" name="_method" value="DELETE">
+                                   <input type="hidden" name="csrf_token" value="{{csrf_token('delete_horaire_'~horaire.id)}}">
+                               </form>
+                           </td> 
+                        </tr>
+                    {% endfor %}
+               </tbody>
+          </table>
+    </div>
+{% endblock %}

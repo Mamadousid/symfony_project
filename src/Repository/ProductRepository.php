@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -15,6 +16,8 @@ class ProductRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Product::class);
     }
+
+    
 
 //    /**
 //     * @return Product[] Returns an array of Product objects
@@ -40,4 +43,14 @@ class ProductRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+   public function findAllByCategorie()
+   {
+       return $this->createQueryBuilder('p')
+           ->select('p.title', 'p.description', 'c.name as category')
+           ->innerJoin('App\Entity\Category', 'c', Join::WITH, 'c.id = p.category')
+           ->getQuery()
+           ->getResult()       
+        ;
+   }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin\product;
 
+use DateTimeImmutable;
 use App\Entity\Product;
 use App\Form\ProductFormType;
 use App\Repository\ProductRepository;
@@ -13,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
-    #[Route('/admin/product/list', name: 'admin_product_index', methods:['GET'])]
+    #[Route('/product/list', name: 'admin_product_index', methods:['GET'])]
     public function index(ProductRepository $productRepository): Response
     {
         $products = $productRepository->findAll();
@@ -50,6 +51,10 @@ class ProductController extends AbstractController
             "form" => $form->createView()
         ]);
     }
+
+   
+
+
 
     #[Route('/admin/product/{id}/edit', name: 'admin_product_edit', methods:['GET', 'PUT'])]
     public function edit(Product $product, Request $request, EntityManagerInterface $em): Response 
