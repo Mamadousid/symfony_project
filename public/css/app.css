@@ -1,264 +1,226 @@
-
+/* Importation des polices */
 @import url('https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playwrite+CL:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
-*{
-    margin: 0px;
-    padding: 0px;
+/* Réinitialisation des marges, des bordures et des polices */
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
 }
 
-
-
-
-h3{
-    display: block;
-    font-size: 1.17em;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
-    unicode-bidi: isolate;
-}
-
-
-.para-banniere{
-    font-weight: 300;
-    color: #111;
-    text-align: center;
-}
-
-
-header{
-    position: fixed;
-    top: 0%;
-    left: 0%;
-    padding: 20px 10px;
+/* Styles du header */
+.banner-header {
+    position: absolute;
+    top: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
+}
+
+.navbar {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    transition: 0,5s;
+    padding: 10px 20px; /* Réduction de la hauteur et ajustement des marges */
+    background-color: #000; /* Fond noir pour la navbar */
+    color: #fff; /* Couleur du texte en blanc */
+    font-family: 'Playfair Display', serif;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Bordure subtile en bas */
 }
 
-.logo{
-    height: 60px;
-
+.navbar .logo img {
+    height: 45px; /* Réduction de la hauteur du logo */
 }
 
-.navbar{
+.nav-links {
     display: flex;
-    position: relative;
-}
-
-.navbar li{
     list-style: none;
+    gap: 15px; /* Espacement réduit entre les éléments */
 }
-.navbar a{
+
+.nav-links li a {
+    color: #fff; /* Couleur du texte en blanc */
+    text-decoration: none;
+    font-size: 0.9em; /* Taille de police réduite pour un look plus élégant */
+    font-weight: 400;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #ffb347; /* Couleur plus douce au survol */
+    text-shadow: 0 0 5px rgba(255, 179, 71, 0.7);
+}
+
+/* Style pour l'icône de compte et le menu déroulant */
+.account-menu .fa-user {
+    font-size: 1.3em; /* Taille réduite de l'icône du compte */
+    color: #fff;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 5px;
+    padding: 8px; /* Réduction de l'espacement interne */
+    list-style: none;
+    min-width: 130px; /* Largeur du menu déroulant réduite */
+}
+
+.dropdown-menu li a {
     color: #fff;
     text-decoration: none;
-    margin-left: 30px;
-    font-weight: 700;
+    padding: 8px;
+    display: block;
+    font-size: 0.8em; /* Taille de police plus petite */
+    font-weight: 400;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-
-
-
-.banniere{
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    background-size: cover;
-  
+.dropdown-menu li a:hover {
+    background-color: rgba(255, 179, 71, 0.1);
+    color: #ffb347;
 }
 
-.banniere .contenu{
-    max-width: 70%;
-    text-align: center;
-    margin-top: 200px;
-    
+.account-menu:hover .dropdown-menu {
+    display: block;
 }
 
-.banniere .contenu h2{
+.burger {
+    display: none;
+    font-size: 1.8em; /* Taille réduite de l'icône burger */
     color: #fff;
-    font-size: 3em;
-    text-transform: capitalize;
-    
-}
-.contenu p:nth-child(2){
-    color: #fff;
-    font-size: 1,2em;
+    cursor: pointer;
 }
 
-.btn1{
-    font-size: 1em;
-    color: #fff;
-    background: #68675f;
-    padding: 10px 20px;
-    display: inline-block;
-    margin-top: 20px;
+/* Styles des titres de section */
+.block-title, .block-title-menu {
+    font-size: 24px; /* Taille de police légèrement réduite */
     text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 2px;
-    transition: 0,5s;
-    margin-left: 10px;
-}
-
-.btn2{
-    font-size: 1em;
-    color: #fff;
-    background: #786518;
-    padding: 10px 20px;
-    display: inline-block;
-    margin-top: 20px;
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 2px;
-    transition: 0,5s;
-    margin-left: 10px;
-}
-
-.btn1:hover{
-  letter-spacing: 4px;
-}
-.btn2:hover{
-    letter-spacing: 4px;
-}
-
-
-.block-title{
-    font-size: 26px;
-    text-transform: uppercase;
-    letter-spacing: 7.5px;
+    letter-spacing: 6px; /* Espacement des lettres ajusté */
     font-weight: normal;
+    margin: 40px 0;
 }
 
-.block-title-menu{
-    font-size: 26px;
-    text-transform: uppercase;
-    letter-spacing: 7.5px;
-    font-weight: normal;
-    margin: 50px;
+.block-text, .block-text-menu {
+    font-size: 13px;
+    letter-spacing: 1.5px; /* Ajustement de l'espacement des lettres */
 }
 
-.block-text{
-    font-size: 14px;
-    letter-spacing: 2px;
+.block-text {
     text-align: left;
-    margin-top: 0;
 }
 
-.block-text-menu{
-    font-size: 14px;
-    letter-spacing: 2px;
+.block-text-menu {
     text-align: center;
-    
 }
 
-.block_generic_button{
-    font-size: 15px;
-    width: 253px;
-    letter-spacing: 2.8px;
-    height: 55px;
+/* Styles du bouton générique */
+.block_generic_button {
+    font-size: 14px; /* Taille de police légèrement réduite */
+    width: 240px;
+    height: 50px; /* Réduction de la hauteur */
     display: inline-block;
     color: #786518;
     border: 2px solid #786518;
     text-decoration: none;
-    line-height: 54px;
+    line-height: 50px;
     text-transform: uppercase;
-    margin: 55px 0 0 0;
+    letter-spacing: 2.5px;
+    margin: 50px 0;
+    text-align: center;
 }
 
-.block_generic_button:hover{
-     background-color: #786518;
-     color: #fff;
+.block_generic_button:hover {
+    background-color: #786518;
+    color: #fff;
 }
 
-.menuContainer{
+/* Styles du menu */
+.menuContainer {
     display: table;
-    background-position: left;
     background-size: cover;
     width: 100%;
     height: 100%;
-    padding: 100px 0;
-}
-
-.pinterestImg {
-    display: none;
-}
-.clear {
-    clear: both;
-}
-
-img {
-    overflow-clip-margin: content-box;
-    overflow: clip;
+    padding: 80px 0; /* Réduction de l'espacement vertical */
 }
 
 .menu_bars {
     width: 50%;
+    margin-top: 40px; /* Ajustement de la marge supérieure */
+}
+
+/* Styles du pied de page */
+.footer-container {
+    background-color: #575b5c;
+    color: #fff;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    padding: 14px 0;
+    text-align: center;
     margin-top: 50px;
 }
 
+/* Styles des liens du pied de page */
+.text-footer {
+    text-transform: uppercase;
+    font-size: 10px;
+    margin: 0;
+}
 
-@media screen and (max-width: 1200px) {
-	.mobile-img {
-		display: block;
-		float: right;
-		width: 50px;
-		margin: 10px;
-	}
+/* Styles des images dans le pied de page */
+img {
+    max-width: 100%;
+    height: auto;
+}
 
-	nav {
-		display: none;
-		float: none;
-		clear: both;
-	}
-
-	header nav a {
-		padding: 45px 20px;
-		display: block;
-		text-align: center;
-	}
-    .block-text{
-        padding: 0 10px 0 10px;
+/* Styles réactifs */
+@media screen and (max-width: 992px) {
+    .navbar-nav {
+        text-align: center;
+        display: block;
     }
 
-}    
-.mobile-img {
-	display: none;
+    .navbar-nav .nav-link {
+        margin-bottom: 8px;
+    }
+
+    .navbar-collapse {
+        margin-top: 10px;
+    }
+
+    .mobile-img {
+        display: block;
+        width: 40px; /* Réduction de la taille de l'image sur mobile */
+        cursor: pointer;
+    }
+
+    .logo img {
+        height: 35px; /* Réduction de la taille du logo sur mobile */
+    }
+
+    .banniere .contenu h2 {
+        font-size: 1.8em; /* Ajustement de la taille de police */
+    }
 }
 
-.text-footer{
-    text-transform: uppercase;
-    font-size: 10px;
+@media screen and (max-width: 576px) {
+    .btn1, .btn2 {
+        font-size: 0.8em;
+        padding: 7px 14px;
+    }
 
-}
+    .block-title, .block-title-menu {
+        font-size: 18px;
+        letter-spacing: 4px; /* Ajustement de l'espacement des lettres */
+    }
 
-#copyright {
-    background: #575b5c;
-    color: #fff;
-    display: block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.75px;
-    line-height: 14px;
-    margin: 0 auto;
-    text-align: center;
-    text-transform: uppercase;
-}
-.footer-container#copyright {
-    padding: 14px 0;
-    width: 100%;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    .footer-container {
+        font-size: 0.75rem;
+    }
 }

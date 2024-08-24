@@ -102,4 +102,13 @@ class ProductController extends AbstractController
         
         return $this->redirectToRoute('admin_product_index');
     }
+
+    #[Route('/admin/product/{id}', name: 'product_show')]
+    public function showProduct(Product $product): Response
+    {
+        return $this->render('product/show.html.twig', [
+            'product' => $product,
+            'imageFile' => $product->getImageFile(), // Assurez-vous que 'getImageFile' retourne bien l'image
+        ]);
+    }
 }

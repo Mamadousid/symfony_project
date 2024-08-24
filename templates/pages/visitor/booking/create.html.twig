@@ -1,0 +1,118 @@
+{% extends 'themes/base_visitor.html.twig' %}
+
+{% block block_name %}Réservation{% endblock %}
+
+{% block description %}Réservation{% endblock %}
+
+{% block main %}
+<main>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="block-title text-center my-5 display-4">Réservez Votre Table</h1>
+
+                <p class="text-danger text-center">Note : Si vous ne recevez pas le mail de confirmation après votre réservation, veuillez vérifier votre boîte SPAM ou courrier indésirable.</p>
+
+                {% include 'components/alert.html.twig' %}
+
+                <div class="card shadow-lg p-4 border-0 rounded">
+                    {{ form_start(form, {'attr': {'class': 'reservation-form'}}) }}
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="contact_form_firstName" class="form-label">Prénom <span class="text-danger">*</span></label>
+                                {{ form_widget(form.firstName, {'attr': {'class': 'form-control shadow-sm'}}) }}
+                                <div class="text-danger">{{ form_errors(form.firstName) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="contact_form_lastName" class="form-label">Nom <span class="text-danger">*</span></label>
+                                {{ form_widget(form.lastName, {'attr': {'class': 'form-control shadow-sm'}}) }}
+                                <div class="text-danger">{{ form_errors(form.lastName) }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="contact_form_email" class="form-label">Email <span class="text-danger">*</span></label>
+                                {{ form_widget(form.email, {'attr': {'class': 'form-control shadow-sm'}}) }}
+                                <div class="text-danger">{{ form_errors(form.email) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="contact_form_phone" class="form-label">Numéro de téléphone</label>
+                                {{ form_widget(form.phone, {'attr': {'class': 'form-control shadow-sm'}}) }}
+                                <div class="text-danger">{{ form_errors(form.phone) }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="contact_form_date_booking" class="form-label">Date de réservation</label>
+                                {{ form_widget(form.date_booking, {'attr': {'class': 'form-control shadow-sm'}}) }}
+                                <div class="text-danger">{{ form_errors(form.date_booking) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="contact_form_timeMeal" class="form-label">Heure</label>
+                                        {{ form_widget(form.TimeMeal, {'attr': {'class': 'form-control shadow-sm'}}) }}
+                                        <div class="text-danger">{{ form_errors(form.TimeMeal) }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="contact_form_minutes" class="form-label">Minutes</label>
+                                        {{ form_widget(form.minutes, {'attr': {'class': 'form-control shadow-sm'}}) }}
+                                        <div class="text-danger">{{ form_errors(form.minutes) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="contact_form_guest" class="form-label">Nombre de personnes</label>
+                                {{ form_widget(form.guest, {'attr': {'class': 'form-control shadow-sm'}}) }}
+                                <div class="text-danger">{{ form_errors(form.guest) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="contact_form_typetable" class="form-label">Type de table</label>
+                                {{ form_widget(form.typetable, {'attr': {'class': 'form-control shadow-sm'}}) }}
+                                <div class="text-danger">{{ form_errors(form.typetable) }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="mb-3">
+                            <label for="contact_form_message" class="form-label">Message <span class="text-danger">*</span></label>
+                            {{ form_widget(form.message, {'attr': {'class': 'form-control shadow-sm', 'rows': '6'}}) }}
+                            <div class="text-danger">{{ form_errors(form.message) }}</div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button formnovalidate type="submit" class="btn btn-primary btn-lg shadow-sm px-5">Envoyer</button>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

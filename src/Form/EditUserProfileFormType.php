@@ -16,14 +16,14 @@ class EditUserProfileFormType extends AbstractType
         $builder
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
-            ->add('email', EmailType::class)
-        ;
+            ->add('email', EmailType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'validation_groups' => ['Default'], // Ne valide pas le groupe 'password_change'
         ]);
     }
 }

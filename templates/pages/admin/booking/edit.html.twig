@@ -1,0 +1,99 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Modifier cette réservation{% endblock %}
+
+{% block description %}Modifier cette réservation{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Modifier cette réservation</h1>
+
+    <div class="container mt-5">
+        <div class="row">
+             <div class="col-md-6 mx-auto">
+                   {{form_start(form)}}
+                         <div class="mt-5 row mb-4">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="contact_form_firstName" class="form-label">Prénom <span class="text-danger">*</span></label>
+                            {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
+                            <div class="text-danger">{{ form_errors(form.firstName) }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="contact_form_lastName" class="form-label">Nom <span class="text-danger">*</span></label>
+                            {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
+                            <div class="text-danger">{{ form_errors(form.lastName) }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="contact_form_email" class="form-label">Email <span class="text-danger">*</span></label>
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                            <div class="text-danger">{{ form_errors(form.email) }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="contact_form_date_booking" class="form-label">Date de réservation</label>
+                            {{ form_widget(form.date_booking, {'attr': {'class': 'form-control'}}) }}
+                            <div class="text-danger">{{ form_errors(form.date_booking) }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="contact_form_timeMeal" class="form-label">Heure</label>
+                            {{ form_widget(form.TimeMeal, {'attr': {'class': 'form-control'}}) }}
+                            <div class="text-danger">{{ form_errors(form.TimeMeal) }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="contact_form_minutes" class="form-label">Minutes</label>
+                            {{ form_widget(form.minutes, {'attr': {'class': 'form-control'}}) }}
+                            <div class="text-danger">{{ form_errors(form.minutes) }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="contact_form_guest" class="form-label">Nombre de personnes</label>
+                            {{ form_widget(form.guest, {'attr': {'class': 'form-control'}}) }}
+                            <div class="text-danger">{{ form_errors(form.guest) }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="contact_form_typetable" class="form-label">Type de table</label>
+                            {{ form_widget(form.typetable, {'attr': {'class': 'form-control'}}) }}
+                            <div class="text-danger">{{ form_errors(form.typetable) }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="mb-3">
+                        <label for="contact_form_message" class="form-label">Message <span class="text-danger">*</span></label>
+                        {{ form_widget(form.message, {'attr': {'class': 'form-control', 'rows': '6'}}) }}
+                        <div class="text-danger">{{ form_errors(form.message) }}</div>
+                    </div>
+                </div>
+
+                 <div class="text-center">
+                    <input formnovalidate type="submit" class="btn btn-primary btn-lg" value="Modifier"></input>
+                </div>
+
+                   {{form_end(form)}}
+             </div>
+        </div>
+    </div>
+
+{% endblock %}

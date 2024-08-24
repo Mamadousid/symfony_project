@@ -22,29 +22,38 @@ class ProfileController extends AbstractController
     #[Route('/user/profile/edit', name: 'user_profile_edit', methods:['GET', 'PUT'])]
     public function editProfile(Request $request, EntityManagerInterface $em): Response
     {
+        // Récupérer l'utilisateur actuellement connecté
         $user = $this->getUser();
-
+    
+        // Créer le formulaire de modification du profil
         $form = $this->createForm(EditUserProfileFormType::class, $user, [
             "method" => "PUT"
         ]);
-
+    
+        // Traiter la requête HTTP et remplir le formulaire avec les données soumises
         $form->handleRequest($request);
-
+    
+        // Vérifier si le formulaire a été soumis et est valide
         if ($form->isSubmitted() && $form->isValid()) 
         {
+            // Persister les modifications apportées à l'utilisateur
             $em->persist($user);
+            // Enregistrer les modifications en base de données
             $em->flush();
-
+    
+            // Ajouter un message flash pour notifier le succès de la modification
             $this->addFlash('success', "Le profil a bien été modifié");
-
+    
+            // Rediriger l'utilisateur vers la page de profil après la modification
             return $this->redirectToRoute("user_profile_index");
         }
-
+    
+        // Rendre la vue du formulaire de modification du profil
         return $this->render('pages/user/profile/edit_profile.html.twig', [
             "form" => $form->createView()
         ]);
-
     }
+    
 
     #[Route('/user/profile/edit/password', name: 'user_profile_edit_password', methods:['GET', 'PUT'])]
     public function editPassword(Request $request, UserPasswordHasherInterface $hasher, EntityManagerInterface $em): Response

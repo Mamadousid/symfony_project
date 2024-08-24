@@ -33,7 +33,7 @@
                          <div class="row mb-3">
                             <div class="col-md-6 text-center">
                                  {% if product.image %}
-                                    <img class="img-fluid" src="{{ vich_uploader_asset(product, 'imageFile'|imagine_filter('admin_product_thumb')) }}" alt="{{ product.title }}">
+                                    <img src="{{ asset(product.image | imagine_filter('admin_product_thumb')) }}" alt="{{ product.title }}">
                                  {% else %}
                                     <p>Aucune image existante</p>
                                  {% endif %}    

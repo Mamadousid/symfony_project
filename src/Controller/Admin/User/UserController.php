@@ -23,18 +23,18 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/user/{id}/edit/roles', name: 'admin_user_edit_roles', methods:['GET','PUT'])]
+    #[Route('/admin/user/{id}/edit/roles', name: 'admin_user_edit_roles', methods:['GET','POST'])]
     public function editRoles(User $user, Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(EditUserRolesFormType::class, $user, [
-            "method" => "PUT"
+            "method" => "POST"
         ]);
 
         $form->handleRequest($request);
 
         if ( $form->isSubmitted() && $form->isValid() ) 
         {
-            $em->persist($user);
+        
             $em->flush();
 
             $this->addFlash("success", "Les rôles de {$user->getFirstName()} {$user->getLastName()} ont été modifié avec succès.");
