@@ -1,71 +1,262 @@
-{% extends "themes/base_visitor.html.twig" %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Déclaration de l'encodage des caractères -->
+    <meta charset="UTF-8">
 
-{% block title %}Acceuil{% endblock %}
+    <!-- Configuration du responsive design pour les appareils mobiles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% block description %}{% endblock %}
+    <!-- Titre de la page affiché dans l'onglet du navigateur -->
+    <title>{% block title %}{% endblock %} - Le Restaurant Toque'OR</title>
 
-{% block main %}
-{# Banniere #}
- <section class="banniere" style="background-image:url(/images/banniere.jpg)" id="banniere">
-  <div class="contenu">
-       <h2>Que Des Plats Délicieux</h2>
-       <p class="para-banniere">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi nihil, cumque fugiat delectus eligendi cupiditate, a magni molestiae et itaque, at pariatur illum ad eos omnis corrupti veniam id dicta. </p>
-       <a href="{{path('visitor_main_index')}}" class="btn1">Voir Notre Menu</a>
-       <a href="{{path('visitor_authentication_login')}}" class="btn2">Reserver une table</a>
-  </div>
+    <!-- Description de la page, utile pour le SEO -->
+    <meta name="description" content="{% block description %}{% endblock %}">
 
-</section>
+    <!-- Indication aux moteurs de recherche de bien indexer la page -->
+    <meta name="robots" content="index, follow">
 
-<section>
-     <div class="container text-center">
-           <div class="row">
-               <div class="mt-5 col-12 col-md-12 col-lg-6">
-                  <h2 class="block-title">Restaurant Toque'Or</h2>
-                  <p class="block-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque cumque aliquid tempora! Eos expedita tenetur sint quisquam veritatis laboriosam vero quam dignissimos ab doloremque commodi perferendis repudiandae ipsum, officia ex. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi voluptas dignissimos eaque est, quibusdam ipsa! Adipisci esse odio ullam unde aut nam error incidunt repellat, exercitationem a necessitatibus accusantium tempora? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis nam, nisi inventore reiciendis reprehenderit sed expedita rerum nesciunt nostrum dolorum odio vitae deserunt ea voluptate magni blanditiis. Ullam, doloribus eveniet! 
-                  </p>
-                  <p class="block-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, porro! Ullam officia magni praesentium voluptatum tenetur temporibus natus quod eaque, provident veniam obcaecati fugit nobis ratione facilis eos unde dolorum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit corrupti hic nulla dolore excepturi. Minima quibusdam ipsum molestiae temporibus eius nihil ut aspernatur animi illum esse, deleniti odio quae numquam.
-                  </p>
-                  <p class="block-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi corrupti in nulla deserunt nisi amet quam inventore asperiores eius autem eligendi aut nihil tempore dolore rerum, voluptates a et soluta.</p>
-               </div>
+    <!-- Informations sur l'auteur et l'éditeur du site -->
+    <meta name="author" content="dwwm">
+    <meta name="publisher" content="dwwm">
 
-               <div class="mt-5 col-12 col-md-12 col-lg-6">
-                   <img src="./images/lerestaurant.jpg" class="img-fluid p-5" alt="Responsive image">
-               </div>
-           </div>
-     </div>
-</section>
+    <!-- Favicon et icônes pour différents appareils -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
-<section class="py-5" style="background-color: #f5f5f5">
-       <div class="container text-center">
-            <div class="row">
-                 <div class="col-12 col-md-12 col-lg-6">
-                      <img src="./images/imgmenu.png" class="img-fluid" alt="">
-                 </div>
+    <!-- Inclusion de Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-                 <div class="col-12 col-md-12 col-lg-6">
-                      <h2 class="block-title-menu">MENU</h2>
-                      <p class="block-text-menu">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nihil sunt.</p>
-                      <a href="{{path('visitor_main_index')}}" class="block_generic_button">Voir le menu</a>
-                 </div>
+    <!-- Inclusion des feuilles de style via Webpack Encore -->
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    <!-- Feuille de style personnalisée -->
+    <link rel="stylesheet" href="/css/welcome.css">
+</head>
+<body>
+    {% block main %}
+    <header class="banner-header">
+        <nav class="navbar">
+            <div class="logo">
+                <a href="{{ path('visitor_main_index') }}">
+                    <img src="/images/logo.png" alt="Logo du Restaurant Toque'OR">
+                </a>
             </div>
-       </div>
-</section>
+            <ul class="nav-links">
+                <li><a href="{{ path('visitor_wellcome_index') }}">Accueil</a></li>
+                <li><a href="{{ path('visitor_main_index') }}">Menu</a></li>
+                <li><a href="{{ path('visitor_booking_create') }}">Réservation</a></li>
+                <li><a href="{{ path('visitor_contact_create') }}">Contact</a></li>
+                <li><a href="{{ path('visitor_event_index') }}">Evennements</a></li>
 
-<section>
-       <div class="container text-center">
-            <div class="row">
-                 <div class="mt-5 col-12 col-md-12 col-lg-6">
-                     <h2 class="block-title">À propos</h2>
-                     <p class="block-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla aspernatur ducimus optio eveniet autem illum. Sequi eos natus voluptatum hic exercitationem, est quod dicta beatae deserunt quaerat aspernatur sed harum.</p>
-                     <p class="block-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur voluptatem voluptatum quae iste excepturi, accusamus reiciendis obcaecati itaque dolorum, quas dolore eum repellat earum ullam perferendis ipsa nulla, corrupti nobis.</p>
-                 </div>
+                <!-- Icon account with dropdown menu -->
+                {% if is_granted('ROLE_USER') %}
+                    <!-- Pour les utilisateurs connectés avec ROLE_USER -->
+                    <li class="nav-item account-menu">
+                        <i class="fa fa-user"></i>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('user_profile_index') }}">Mon profil</a></li>
+                            <li><a href="{{ path('user_bookings_index') }}">Gérer mes réservations</a></li>
+                             {% if is_granted('ROLE_ADMIN') %}
+                                <li><a href="{{ path('admin_home_index') }}">Administration</a></li>
+                            {% endif %}
 
-                 <div class="col-12 col-md-12 col-lg-6">
-                      <div class="mt-5">
-                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5248.903324318295!2d2.3023562119638017!3d48.868665771214026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fc36c62670b%3A0xbf23afbccb3b7c8e!2sLe%20Confidentiel!5e0!3m2!1sfr!2sfr!4v1722198835693!5m2!1sfr!2sfr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                      </div>
-                 </div>
+                            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <!-- Pour les utilisateurs non connectés -->
+                    <li class="nav-item account-menu">
+                        <i class="fa fa-user"></i>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('visitor_authentication_login') }}">Connexion</a></li>
+                            <li><a href="{{ path('visitor_registration_register') }}">Inscription</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+            <div class="burger">
+                <i class="fa fa-bars"></i>
             </div>
-       </div>
+        </nav>
+    </header>
+
+    <div class="bloc">
+        <video autoplay="autoplay" loop="infinite" muted src="./images/toquetoque.mp4"></video>
+        <div class="banner-content">
+        </div>
+        <!-- Button for booking placed at the bottom of the banner -->
+        <a href="{{ path('visitor_booking_create') }}" class="btn-banner btn-large" style="text-align: center;">RÉSERVER UNE TABLE</a>
+    </div>
+
+    <section>
+        <div class="container text-center">
+            <div class="row">
+                <div class="mt-5 col-12 col-md-12 col-lg-6">
+                    <h2 class="block-title">Restaurant Toque'Or</h2>
+                    <p class="block-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque cumque aliquid tempora! Eos expedita tenetur sint quisquam veritatis laboriosam vero quam dignissimos ab doloremque commodi perferendis repudiandae ipsum, officia ex. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi voluptas dignissimos eaque est, quibusdam ipsa! Adipisci esse odio ullam unde aut nam error incidunt repellat, exercitationem a necessitatibus accusantium tempora? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perspiciatis nam, nisi inventore reiciendis reprehenderit sed expedita rerum nesciunt nostrum dolorum odio vitae deserunt ea voluptate magni blanditiis. Ullam, doloribus eveniet!</p>
+                    <p class="block-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, porro! Ullam officia magni praesentium voluptatum tenetur temporibus natus quod eaque, provident veniam obcaecati fugit nobis ratione facilis eos unde dolorum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit corrupti hic nulla dolore excepturi. Minima quibusdam ipsum molestiae temporibus eius nihil ut aspernatur animi illum esse, deleniti odio quae numquam.</p>
+                    <p class="block-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi corrupti in nulla deserunt nisi amet quam inventore asperiores eius autem eligendi aut nihil tempore dolore rerum, voluptates a et soluta.</p>
+                </div>
+
+                <div class="mt-5 col-12 col-md-12 col-lg-6">
+                    <img src="./images/lerestaurant.jpg" class="img-fluid p-5" alt="Responsive image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 text-white" style="background-color: #000000">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-6">
+                <div class="video-carousel">
+                    <!-- Flèche gauche -->
+                    <div class="arrow-left">&#9664;</div>
+
+                    <!-- Vidéos du carrousel -->
+                    <div class="videos">
+                        <video autoplay loop muted playsinline>
+                            <source src="./images/imagemenu.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo HTML5.
+                        </video>
+                        <video autoplay loop muted playsinline>
+                            <source src="./images/imagemenu2.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo HTML5.
+                        </video>
+                         <video autoplay loop muted playsinline>
+                            <source src="./images/imagemenu3.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo HTML5.
+                        </video>
+                        <video autoplay loop muted playsinline>
+                            <source src="./images/imagemenu4.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la vidéo HTML5.
+                        </video>
+                    </div>
+
+                    <!-- Flèche droite -->
+                    <div class="arrow-right">&#9654;</div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-12 col-lg-6">
+                <h2 class="block-title-menu">MENU</h2>
+                <p class="block-text-menu">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias nihil sunt.</p>
+                <a href="{{ path('visitor_main_index') }}" class="block_generic_button">Voir le menu</a>
+            </div>
+        </div>
+    </div>
 </section>
-{% endblock %}
+
+
+    <section>
+        <div class="container text-center">
+            <div class="row">
+                <div class="mt-5 col-12 col-md-12 col-lg-6">
+                    <h2 class="block-title">À propos</h2>
+                    <p class="block-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla aspernatur ducimus optio eveniet autem illum. Sequi eos natus voluptatum hic exercitationem, est quod dicta beatae deserunt quaerat aspernatur sed harum.</p>
+                    <p class="block-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur voluptatem voluptatum quae iste excepturi, accusamus reiciendis obcaecati itaque dolorum, quas dolore eum repellat earum ullam perferendis ipsa nulla, corrupti nobis.</p>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-6">
+                    <div class="mt-5">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5248.903324318295!2d2.3023562119638017!3d48.868665771214026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fc36c62670b%3A0xbf23afbccb3b7c8e!2sLe%20Confidentiel!5e0!3m2!1sfr!2sfr!4v1722198835693!5m2!1sfr!2sfr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pied de page -->
+    <footer class="container-fluid text-center mt-5 p-3" style="background-color: #000000">
+        <div class="container-fluid text-white">
+            <div class="row">
+                <!-- Adresse du restaurant -->
+                <div class="col-12 col-md-12 col-lg-4">
+                    <h3>Adresse</h3>
+                    <p class="text-footer">Le Toque'OR</p>
+                    <p class="text-footer">56 Boulevard Magenta</p>
+                    <p class="text-footer">75008 Paris</p>
+                    <p class="text-footer">01 01 01 01 01</p>
+                </div>
+
+                <!-- Horaires d'ouverture -->
+                <div class="col-12 col-md-12 col-lg-4">
+                    <h3>Horaires</h3>
+                    <p class="text-footer">Lundi-jeu: 19h00 à 00h00</p>
+                    <p class="text-footer">Ven: 19h00 à 01h00</p>
+                    <p class="text-footer">Sam: 12h00 à 01h00</p>
+                    <p class="text-footer">Dim: 12h00 à 02h00</p>
+                </div>
+
+                <!-- Informations juridiques et réseaux sociaux -->
+                <div class="col-12 col-md-12 col-lg-4">
+                    <div>
+                        <h3>Juridique</h3>
+                        <div><a class="text-footer" style="font-size: 13px;" href="">Politique de confidentialité</a></div>
+                        <div class="mb-5"><a class="text-footer" style="font-size: 13px;" href="">Mentions légales</a></div>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 style="font-size: 13px;">Suivez-nous !</h3>
+                        <div>
+                            <a href="https://www.instagram.com/" target="_blank">
+                                <img class="mx-1" width="30" height="30" src="./images/instagram.png" alt="Icone Instagram">
+                            </a>
+                            <a href="https://www.snapchat.com/" target="_blank">
+                                <img class="mx-1" width="30" height="30" src="./images/snapchat.png" alt="Icone Snapchat">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div id="copyright" class="footer-container">
+                © Toque'OR Paris. Tous Droits Réservés / All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+      document.querySelector('.burger').addEventListener('click', function() {
+         document.querySelector('.nav-links').classList.toggle('active');
+      });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const videos = document.querySelectorAll('.videos video');
+        const arrowLeft = document.querySelector('.arrow-left');
+        const arrowRight = document.querySelector('.arrow-right');
+        let currentVideo = 0;
+
+        function updateVideoPosition() {
+            const offset = -currentVideo * 100;
+            videos.forEach(video => {
+                video.style.transform = `translateX(${offset}%)`;
+            });
+        }
+
+        arrowLeft.addEventListener('click', function() {
+            currentVideo = (currentVideo === 0) ? videos.length - 1 : currentVideo - 1;
+            updateVideoPosition();
+        });
+
+        arrowRight.addEventListener('click', function() {
+            currentVideo = (currentVideo === videos.length - 1) ? 0 : currentVideo + 1;
+            updateVideoPosition();
+        });
+
+        updateVideoPosition(); // Initial update
+    });
+</script>
+
+    {% endblock %}
+</body>
+</html>

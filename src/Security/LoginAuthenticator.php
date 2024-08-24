@@ -44,27 +44,31 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-            return new RedirectResponse($targetPath);
-        }
-        
+       // Vérifie s'il y a un chemin de redirection enregistré dans la session.
+       if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+           // Si un chemin cible existe, redirige l'utilisateur vers ce chemin.
+           return new RedirectResponse($targetPath);
+       }
 
-        $user = $token->getUser();
-        $roles = $user->getRoles();
+       // Récupère l'utilisateur authentifié.
+       // Récupère les rôles attribués à l'utilisateur authentifié.
+       $user = $token->getUser();
+       $roles = $user->getRoles();
+   
+       if (in_array("ROLE_ADMIN", $roles)) {
 
-        if (in_array("ROLE_ADMIN", $roles)) 
-        {
-            return new RedirectResponse($this->urlGenerator->generate('admin_home_index'));
-        }
+           return new RedirectResponse($this->urlGenerator->generate('admin_home_index'));
+       }
 
-        if (in_array("ROLE_USER", $roles)) 
-        {
-            return new RedirectResponse($this->urlGenerator->generate('user_home_index'));
-        }
-        
-         
-        
+       if (in_array("ROLE_USER", $roles)) {
+     
+           return new RedirectResponse($this->urlGenerator->generate('user_bookings_index'));
+       }
+
+       // Optionnellement au cas où l'utilisateur ne correspondent à aucun rôle connu.
+       return new RedirectResponse($this->urlGenerator->generate('visitor_wellcome_index'));
     }
+
 
     protected function getLoginUrl(Request $request): string
     {

@@ -14,14 +14,10 @@ class MainController extends AbstractController
     public function index(productRepository $productRepository): Response
     {
         $products = $productRepository->findAllByCategorie();
-        $productsE = $productRepository->findByCategory(10);
-      
-       
-    
 
         return $this->render('pages/visitor/main/index.html.twig', [
             'products' => $products,
-            'productsE' => $productsE,
+
         ]);
     }
 

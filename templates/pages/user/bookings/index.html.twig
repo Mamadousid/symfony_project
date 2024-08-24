@@ -1,0 +1,116 @@
+{% extends 'themes/base_user.html.twig' %}
+
+{% block title %}Mes Réservations{% endblock %}
+
+{% block description %}Mes Réservations{% endblock %}
+
+{% block main %}
+    <style>
+        /* Assure que le body et html prennent toute la hauteur de l'écran */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .background {
+            background-image: url("{{ asset('images/pagemesresa.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh; /* Assure que l'image couvre au moins la hauteur de la vue */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centre horizontalement le contenu */
+            padding: 20px; /* Pour ajouter un peu d'espace autour du contenu */
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 1200px; /* Largeur maximale du conteneur */
+            margin: 0 auto; /* Centre le conteneur horizontalement */
+        }
+
+        table {
+            width: 100%; /* Assure que le tableau occupe toute la largeur du conteneur */
+            margin-bottom: 20px; /* Espace entre les tableaux */
+        }
+
+        th, td {
+            text-align: center; /* Centre le texte dans les cellules */
+        }
+    </style>
+
+    <div class="background text-white">
+        <h1 class="text-center mb-5 my-3 display-5">Mes Réservations</h1>
+
+        {% include 'components/alert.html.twig' %}
+
+        <div class="table-container">
+            <h2 class="mt-5">Réservations à venir</h2>
+            {% if futureBookings is not empty %}
+                <table class="table table-warning table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Heure</th>
+                            <th>Minutes</th>
+                            <th>Type de Table</th>
+                            <th>Invités</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in futureBookings %}
+                            <tr>
+                                <td>{{ booking.dateBooking|date('d/m/Y') }}</td>
+                                <td>{{ booking.timeMeal.heure }}</td>
+                                <td>{{ booking.minutes.minute }}</td>
+                                <td>{{ booking.typetable.name }}</td>
+                                <td>{{ booking.guest }}</td>
+                                <td>
+                                    <a href="{{ path('user_booking_edit', { 'id': booking.id }) }}" class="btn btn-warning btn-sm">Modifier</a>
+                                    <form action="{{ path('user_booking_delete', { 'id': booking.id }) }}" method="post" style="display:inline;">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir annuler cette réservation ?')">Annuler</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Aucune réservation à venir.</p>
+            {% endif %}
+        </div>
+
+        <div class="table-container">
+            <h2 class="mt-5">Réservations passées</h2>
+            {% if pastBookings is not empty %}
+                <table class="table table-success table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Heure</th>
+                            <th>Minutes</th>
+                            <th>Type de Table</th>
+                            <th>Invités</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in pastBookings %}
+                            <tr>
+                                <td>{{ booking.dateBooking|date('d/m/Y') }}</td>
+                                <td>{{ booking.timeMeal.heure }}</td>
+                                <td>{{ booking.minutes.minute }}</td>
+                                <td>{{ booking.typetable.name }}</td>
+                                <td>{{ booking.guest }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Aucune réservation passée.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

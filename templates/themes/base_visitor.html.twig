@@ -1,26 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-     
-    {# L'encodage de caractères #} 
+    <!-- Meta, titre, favicon, etc. restent inchangés -->
     <meta charset="UTF-8">
-
-    {# Le minimum de responsive design #}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    {# Le titre de chaque page dans l'onglet #}
     <title>{% block title %}{% endblock %} - Le Restaurant Toque'OR</title>
-
-    {# La description de chaque page #}
     <meta name="description" content="{% block description %}{% endblock %}">
-
-    {# Les balises utiles pour le SEO #}
     <meta name="robots" content="index, follow">
-
     <meta name="author" content="dwwm">
     <meta name="publisher" content="dwwm">
-
-    {# La Favicon #}
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -28,121 +16,138 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-
-     {# Font awesome #}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-     {% block stylesheets %}
-            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    
-    {# Ma feuille de style #}
-    <link rel="stylesheet" href="/css/app.css">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    <link rel="stylesheet" href="/css/welcome.css">
 </head>
 <body>
 
-
-   {# La barre de navigation#}
-   
-
-   <nav class="navbar navbar-expand-lg" style="background-color: #000000; height: 70px">
-   <div class="container-fluid">
-   <a href="{{path('visitor_wellcome_index')}}" ><img class="logo" src="./images/logo.png" alt=""></a>
-   <img class="mobile-img" style="display: none;" src="./images/burger.png" alt="Menu">
-   <ul class="navbar mt-2" style="margin-right: 20px;"> 
-        <li><a href="{{path('visitor_wellcome_index')}}">Accueil</a></li>
-        <li><a href="{{path('visitor_main_index')}}">Menu</a></li>
-        <li><a href="{{path('visitor_contact_create')}}">Contact</a></li>
-        <li><a href="{{path('visitor_event_index')}}">Evennement</a></li>
-
-       
-          
-             {% if app.user %}
-                {% if is_granted('ROLE_ADMIN') %}
-                 <li class="nav-item">
-                      <a href="{{path('admin_home_index')}}" class="btn btn-outline-success">Administrateur</a>
-                 </li>
-                {% endif %}
-
-                {% if is_granted('ROLE_USER') %}
-                  <li class="nav-item">
-                      <a href="{{path('user_home_index')}}" class="btn btn-outline-secondary">Mon profil</a>
-                 </li>
-                 <li class="nav-item">
-                      <a href="#" class="btn btn-outline-warning">Réservation</a>
-                 </li>
-                {% endif %}
-                
-                
-                <li class="nav-item">
-                <a href="{{path('app_logout')}}" class="btn btn-danger">Déconnexion</a>
-                </li>
-
-             {% else %}
-                 <li class="nav-item">
-                     <a href="{{path('visitor_authentication_login')}}" class="btn btn-outline-secondary">Compte</a>
-                 </li>
-
-                 <li class="nav-item">
-                     <a href="{{path('visitor_registration_register')}}" class="btn btn-outline-warning shadow">RESERVER</a>
-                 </li>
-             {% endif %}
-
+    <!-- Barre de navigation principale -->
+    <nav class="navbar" style="background-color: #000000;">
+        <div class="logo">
+            <a href="{{ path('visitor_main_index') }}">
+                <img src="/images/logo.png" alt="Logo du Restaurant Toque'OR">
+            </a>
         </div>
+        <ul class="nav-links">
+            <li><a href="{{ path('visitor_wellcome_index') }}">Accueil</a></li>
+            <li><a href="{{ path('visitor_main_index') }}">Menu</a></li>
+            <li><a href="{{ path('visitor_booking_create') }}">Réservation</a></li>
+            <li><a href="{{ path('visitor_contact_create') }}">Contact</a></li>
+            <li><a href="{{ path('visitor_event_index') }}">Evennements</a></li>
+            
+            <!-- Icon account with dropdown menu -->
+            {% if is_granted('ROLE_USER') %}
+                <!-- Pour les utilisateurs connectés avec ROLE_USER -->
+                <li class="nav-item account-menu">
+                    <i class="fa fa-user"></i>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('user_profile_index') }}">Mon profil</a></li>
+                        <li><a href="{{ path('user_bookings_index') }}">Gérer mes réservations</a></li>
+                         <!-- Lien pour les administrateurs -->
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('admin_home_index') }}">Administration</a></li>
+                        {% endif %}
+
+                        <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    </ul>
+                </li>
+            {% else %}
+                <!-- Pour les utilisateurs non connectés -->
+                <li class="nav-item account-menu">
+                    <i class="fa fa-user"></i>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('visitor_authentication_login') }}">Connexion</a></li>
+                        <li><a href="{{ path('visitor_registration_register') }}">Inscription</a></li>
+                    </ul>
+                </li>
+            {% endif %}
         </ul>
-   </nav>
-   
+        <div class="burger">
+            <i class="fa fa-bars"></i>
+        </div>
+    </nav>
 
-
-
-    {# Le contenu spécifique à chaque page #}
+    <!-- Contenu spécifique à chaque page -->
     {% block main %}{% endblock %}
 
+    <!-- Bouton "Remonter en haut" -->
+    <button id="scrollToTopBtn" class="scrollToTopBtn">
+        <i class="fa fa-arrow-up"></i>
+    </button>
 
-    <footer class="container-fluid text-center mt-5 p-3" style="background-color: #000000">
-         <div class="container-fluid text-white" >
+    <!-- Pied de page -->
+    <footer class="container-fluid text-center mt-5 p-3" style="background-color: #000000;">
+        <div class="container text-white">
             <div class="row">
-               <div class="col-12 col-md-12 col-lg-4">
-                  <h3>Adresse</h3>
-                  <p class="text-footer">Le Toque'OR</p>
-                  <p class="text-footer">56 Boulevard Magenta</p>
-                  <p class="text-footer">75008 Paris</p>
-                  <p class="text-footer">01 01 01 01 01</p>
-               </div>
-
-               <div class="col-12 col-md-12 col-lg-4">
-                   <h3>Horaires</h3>
-                   <p class="text-footer">Lundi-jeu:19h00 à 00h00</p>
-                   <p class="text-footer">Ven:19h00 à 1h</p>
-                   <p class="text-footer">Sam:12h00 à 1h</p>
-                   <p class="text-footer">Dim:12h à 2h</p>
-               </div>
-
-               <div class="col-12 col-md-12 col-lg-4">
-                  <div>
-                   <h3>Juridique</h3>
-                   <div><a class="text-footer" style="font-size: 13px;" href="">Polique de confidentialité</a></div>
-                   <div class="mb-5"><a class="text-footer" style="font-size: 13px;" href="">Mentions légales</a></div>
-                  </div>
-
-                  <div class="mb-5">
-                    <h3 style="font-size: 13px;">Suivez-nous!</h3>
-                    <div>
-                    <a href="https://www.instagram.com/" target="_blank"><img class="mx-1" width="30" height="30" src="./images/instagram.png"  alt="Icone réseau social"></a>
-                    <a href="https://www.snapchat.com/" target="_blank"><img class="mx-1" width="30" height="30" src="./images/snapchat.png"  alt="Icone réseau social"></a>
+                <div class="col-12 col-md-4">
+                    <h3>Adresse</h3>
+                    <p class="text-footer">Le Toque'OR</p>
+                    <p class="text-footer">56 Boulevard Magenta</p>
+                    <p class="text-footer">75008 Paris</p>
+                    <p class="text-footer">01 01 01 01 01</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <h3>Horaires</h3>
+                    <p class="text-footer">Lundi-jeu: 19h00 à 00h00</p>
+                    <p class="text-footer">Ven: 19h00 à 01h00</p>
+                    <p class="text-footer">Sam: 12h00 à 01h00</p>
+                    <p class="text-footer">Dim: 12h00 à 02h00</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <h3>Juridique</h3>
+                    <div><a class="text-footer" href="">Politique de confidentialité</a></div>
+                    <div><a class="text-footer" href="">Mentions légales</a></div>
+                    <div class="mt-3">
+                        <h3>Suivez-nous !</h3>
+                        <a href="https://www.instagram.com/" target="_blank">
+                            <img class="mx-1" width="30" height="30" src="./images/instagram.png" alt="Instagram">
+                        </a>
+                        <a href="https://www.snapchat.com/" target="_blank">
+                            <img class="mx-1" width="30" height="30" src="./images/snapchat.png" alt="Snapchat">
+                        </a>
                     </div>
-               </div>
+                </div>
             </div>
-              <div id="copyright" class="footer-container">
-	                    © Toque'OR Paris. Tous Droits Réservés / All Rights Reserved.	</div>
-                  </div> 
-         </div>
+            <div id="copyright" class="footer-container">
+                © Toque'OR Paris. Tous Droits Réservés / All Rights Reserved.
+            </div>
+        </div>
     </footer>
+    
+    <!-- Inclusion des fichiers JavaScript via Webpack Encore -->
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
 
+    <!-- Script pour gérer le bouton "Remonter en haut" -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            
+            // Fonction pour afficher ou masquer le bouton
+            function toggleScrollToTopBtn() {
+                if (window.scrollY > 200) {
+                    scrollToTopBtn.style.display = "flex";
+                } else {
+                    scrollToTopBtn.style.display = "none";
+                }
+            }
+
+            // Fonction pour remonter en haut de la page
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Écouteurs d'événements
+            window.addEventListener('scroll', toggleScrollToTopBtn);
+            scrollToTopBtn.addEventListener('click', scrollToTop);
+        });
+    </script>
 </body>
 </html>

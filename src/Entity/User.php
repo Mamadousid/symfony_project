@@ -45,7 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Regex(
         pattern: '/\d/',
         match: false,
-        message: 'Le nom ne pas contenir de chiffres',
+        message: 'Le nom ne doit pas contenir de chiffres',
     )]
     #[ORM\Column(length: 255)]
     private ?string $lastName = null;
@@ -59,8 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Email(
         message: 'L\'email {{ value }} est invalide.',
     )]
-    #[ORM\Column(length: 180, unique: true 
-    )]
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
     /**
@@ -74,23 +73,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     
     // mot de passe
-    #[Assert\NotBlank(message: 'Le mot de passe est obligatoire')]
+    
+    #[Assert\NotBlank(message: 'Le mot de passe est obligatoire', groups: ['password_change'])]
     #[Assert\Length(
         min: 12,
         max: 255,
         maxMessage: 'Le mot de passe ne doit pas dépasser {{ limit }} caractères.',
-        minMessage: "Le mot de passe doit contenir au minimum {{ limit }} caractères."
+        minMessage: "Le mot de passe doit contenir au minimum {{ limit }} caractères.",
+        groups: ['password_change']
     )]
     #[Assert\Regex(
-        pattern: "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{11,255}$/",
+        pattern: "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,255}$/",
         match: true,
-        message:"Le mot de passe doit contenir au moins une lettre miniscule, majuscule, un chiffre et un caractère spécial "
+        message: "Le mot de passe doit contenir au moins une lettre miniscule, une majuscule, un chiffre et un caractère spécial",
+        groups: ['password_change']
     )]
-    #[Assert\NotCompromisedPassword(message:"La sécurité de votre mot de passe est trop faible. Veuillez en choisir un autre")]
-     #[ORM\Column]
+    #[Assert\NotCompromisedPassword(message: "La sécurité de votre mot de passe est trop faible. Veuillez en choisir un autre", groups: ['password_change'])]
+    #[ORM\Column]
     private ?string $password = null;
 
-   
     // date de création
     #[Gedmo\Timestampable(on: 'create')]
     #[ORM\Column(nullable: true)]
@@ -114,10 +115,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'user')]
     private Collection $products;
 
+    /**
+     * @var Collection<int, Booking>
+     */
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Booking::class)]
+    private Collection $bookings;
+
     public function __construct()
     {
-        $this->roles[]= "ROLE_USER";
+        $this->roles[] = 'ROLE_USER';
         $this->products = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -240,8 +248,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->updatedAt;
     }
 
-
-
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -278,6 +284,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($product->getUser() === $this) {
                 $product->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): static
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): static
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getUser() === $this) {
+                $booking->setUser(null);
             }
         }
 

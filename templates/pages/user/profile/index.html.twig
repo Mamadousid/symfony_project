@@ -5,33 +5,92 @@
 {% block description %}Mon profil{% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Mon profil</h1>
+    <style>
+        /* Assure que le body et html prennent toute la hauteur de l'écran */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        
+        .background {
+            background-image: url("{{ asset('images/monprofil.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh; /* Assure que l'image couvre au moins la hauteur de la vue */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centre le contenu verticalement */
+            align-items: center; /* Centre le contenu horizontalement */
+            padding: 2rem; /* Ajoute un padding autour du contenu */
+        }
 
-    {% include 'components/alert.html.twig' %}
+        .content {
+            text-align: center;
+            max-width: 600px; /* Limite la largeur de la carte */
+            width: 100%;
+        }
 
-    <div class="container mt-5">
-       <div class="row">
-           <div class="col-md-10 mx-auto">
-               <div class="text-center card">
-                 <div class="card-body">
-                   <p class="card-text"><strong>Prénom</strong>: {{app.user.firstName}}</p>
-                   <p class="card-text"><strong>Nom</strong>: {{app.user.lastName}}</p>
-                   <p class="card-text"><strong>Email</strong>: {{app.user.email}}</p>
-                   
-                    <a href="{{path('user_profile_edit')}}" class="m-2 btn btn-warning shadow">Modifier votre profil</a>
-                    <a href="{{path('user_profile_edit_password')}}" class="m-2 btn btn-dark shadow">Modifier votre mot de passe</a>
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Arrière-plan blanc avec opacité */
+            border-radius: 10px; /* Coins arrondis */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre portée */
+            padding: 2rem; /* Espacement interne */
+            margin: 0 auto; /* Centre la carte horizontalement */
+            max-width: 100%; /* Assure que la carte ne dépasse pas de la largeur du conteneur */
+        }
+
+        .card-text {
+            margin-bottom: 1rem; /* Espacement entre les lignes de texte */
+        }
+
+        .btn {
+            margin: 0.5rem; /* Espacement entre les boutons */
+        }
+
+        .btn-warning {
+            background-color: #ffc107; /* Couleur de fond pour le bouton Modifier */
+            border: none; /* Enlève la bordure */
+        }
+
+        .btn-dark {
+            background-color: #343a40; /* Couleur de fond pour le bouton Modifier le mot de passe */
+            border: none; /* Enlève la bordure */
+        }
+
+        .btn-danger {
+            background-color: #dc3545; /* Couleur de fond pour le bouton Supprimer */
+            border: none; /* Enlève la bordure */
+        }
+
+        .btn:hover {
+            opacity: 0.9; /* Effet de survol pour tous les boutons */
+        }
+    </style>
+
+    <div class="background">
+        <div class="content" style="margin-bottom: 180px;">
+            <h1 class="text-white my-3 display-5">Bienvenue {{ app.user.firstName }} {{ app.user.lastName }}!</h1>
+
+            {% include 'components/alert.html.twig' %}
+
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text"><strong>Prénom</strong>: {{ app.user.firstName }}</p>
+                    <p class="card-text"><strong>Nom</strong>: {{ app.user.lastName }}</p>
+                    <p class="card-text"><strong>Email</strong>: {{ app.user.email }}</p>
+
+                    <a href="{{ path('user_profile_edit') }}" class="btn btn-warning shadow">Modifier votre profil</a>
+                    <a href="{{ path('user_profile_edit_password') }}" class="btn btn-dark shadow">Modifier votre mot de passe</a>
                     {% if "ROLE_SUPER_ADMIN" not in app.user.roles %}
-                         <form class="d-inline" action="{{path('user_profile_delete')}}" method="POST">
-                          <input type="hidden" name="_method" value="DELETE">
-                          <input type="hidden" name="csrf_token" value="{{csrf_token('delete_profile')}}">
-                          <input onclick="return confirm('Confirmer la supression de votre compte?')" type="submit" class="m-2 btn btn-danger shadow" value="Supprimer votre compte">
-                      </form>
+                        <form class="d-inline" action="{{ path('user_profile_delete') }}" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token('delete_profile') }}">
+                            <input onclick="return confirm('Confirmer la suppression de votre compte?')" type="submit" class="btn btn-danger shadow" value="Supprimer votre compte">
+                        </form>
                     {% endif %}
-                     
-                   
-                 </div>
-               </div>
-           </div>
-       </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

@@ -1,0 +1,402 @@
+/* Google Font import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* Styles généraux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Bannière et vidéo de fond */
+.bloc {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.bloc video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    margin-top: 20vh; /* Ajustez la hauteur si nécessaire */
+}
+
+.banner-content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.banner-content p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+}
+
+/* Updated button design */
+.btn-banner {
+    display: inline-block;
+    padding: 12px 24px; /* Smaller padding for a smaller button */
+    background-color: transparent; /* Transparent background */
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 1.2em; /* Smaller font size */
+    font-weight: bold;
+    border: 2px solid white; /* White border */
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif; /* Stylish font */
+    letter-spacing: 1px; /* Letter spacing */
+    transition: background-color 0.3s, color 0.3s, transform 0.3s, border-color 0.3s;
+    position: absolute; /* Absolute positioning within the banner */
+    bottom: 100px; /* 100px from the bottom of the banner */
+    left: 50%;
+    transform: translateX(-50%); /* Center the button horizontally */
+    z-index: 10; /* Ensure the button is above other content in the banner */
+}
+
+.btn-banner:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Light white background on hover */
+    color: gold; /* Gold text color on hover */
+    border-color: gold; /* Change border color on hover */
+    transform: translateX(-50%) scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Style pour le bouton de connexion */
+.btn-login {
+    display: inline-block;
+    padding: 10px 20px; /* Taille du bouton */
+    background-color: transparent; /* Fond transparent */
+    color: white; /* Couleur du texte */
+    text-transform: uppercase; /* Majuscules */
+    text-decoration: none; /* Pas de soulignement */
+    font-size: 1em; /* Taille de police */
+    font-weight: bold; /* Police en gras */
+    border: 2px solid white; /* Bordure blanche */
+    border-radius: 5px; /* Coins arrondis */
+    font-family: 'Montserrat', sans-serif; /* Police stylée */
+    letter-spacing: 1px; /* Espacement des lettres */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Effets de transition */
+    position: relative; /* Position relative pour les effets de survol */
+    margin: 0 10px; /* Marge autour du bouton */
+}
+
+.btn-login:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Fond léger au survol */
+    color: gold; /* Couleur du texte au survol */
+    border-color: gold; /* Couleur de la bordure au survol */
+}
+
+/* Navigation */
+.banner-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: transparent; /* No background color */
+    font-family: 'Playfair Display', serif; /* Elegant font for navigation */
+}
+
+.navbar .logo img {
+    height: 60px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links li {
+    margin: 0;
+    position: relative; /* Position relative for dropdowns */
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em; /* Smaller font size for a more chic look */
+    font-weight: 400;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.nav-links li a:hover {
+    color: gold; /* Gold color for hover */
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.7); /* Shadow effect */
+}
+
+/* Style pour l'icône de compte et le menu déroulant */
+.account-menu {
+    position: relative; /* Position for the dropdown menu */
+}
+
+.account-menu .fa-user {
+    font-size: 1.5em; /* Size of the account icon */
+    color: white;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none; /* Hide menu by default */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9); /* Background of the dropdown menu */
+    border-radius: 5px;
+    padding: 10px;
+    list-style: none;
+    min-width: 150px;
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    font-family: 'Montserrat', sans-serif; /* Font for the links */
+    font-size: 0.9em; /* Smaller font size */
+    font-weight: 400;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-menu li a:hover {
+    background-color: rgba(255, 215, 0, 0.1); /* Light background on hover */
+    color: gold; /* Text color on hover */
+}
+
+/* Show dropdown menu on hover */
+.account-menu:hover .dropdown-menu {
+    display: block;
+}
+
+.burger {
+    display: none;
+    font-size: 2em;
+    color: white;
+    cursor: pointer;
+}
+
+/* Main et foot*/
+h3{
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+.block-title{
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 7.5px;
+    font-weight: normal;
+}
+
+.block-title-menu{
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 7.5px;
+    font-weight: normal;
+    margin: 50px;
+}
+
+.block-text{
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: left;
+    margin-top: 0;
+}
+
+.block-text-menu{
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-align: center;
+    
+}
+
+.block_generic_button{
+    font-size: 15px;
+    width: 253px;
+    letter-spacing: 2.8px;
+    height: 55px;
+    display: inline-block;
+    color: #786518;
+    border: 2px solid #786518;
+    text-decoration: none;
+    line-height: 54px;
+    text-transform: uppercase;
+    margin: 55px 0 0 0;
+}
+
+.block_generic_button:hover{
+     background-color: #786518;
+     color: #fff;
+}
+
+.menuContainer{
+    display: table;
+    background-position: left;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    padding: 100px 0;
+}
+
+.pinterestImg {
+    display: none;
+}
+.clear {
+    clear: both;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.menu_bars {
+    width: 50%;
+    margin-top: 50px;
+}
+
+.text-footer{
+    text-transform: uppercase;
+    font-size: 10px;
+
+}
+
+#copyright {
+    background: #575b5c;
+    color: #fff;
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.75px;
+    line-height: 14px;
+    margin: 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+}
+.footer-container#copyright {
+    padding: 14px 0;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+}
+
+/**/
+
+.video-carousel {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.videos {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+.videos video {
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.arrow-left, .arrow-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2em;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    user-select: none;
+}
+
+.arrow-left {
+    left: 10px;
+}
+
+.arrow-right {
+    right: 10px;
+}
+
+.scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    display: none;
+    z-index: 1000;
+}
+
+.scrollToTopBtn:hover {
+    background-color: #333;
+}

@@ -92,6 +92,8 @@ class Product
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $Ispublished = null;
 
+    
+
     public function getId(): ?int
     {
         return $this->id;
