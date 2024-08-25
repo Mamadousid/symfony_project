@@ -5,69 +5,136 @@
 {% block description %}Accueil{% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Bienvenue !</h1>
-    <h2 class="text-center">Espace Administration Du Restaurant {{app.user.firstName}} {{app.user.lastName}}</h2>
-    <div class="container my-5 text-center ">
-        <div class="row justify-content-center">
-            <div class="col-md-3 d-flex justify-content-center align-items-center my-3">
-                <div class="card text-bg-light my-3 w-100 h-100">
-                    <a class="text-decoration-none text-dark" href="{{path('admin_category_index')}}">
-                        <div class="card-header">Les catégories</div>
-                    </a>
-                    <div class="card-body">
-                        <p class="card-text">{{categories|length}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex justify-content-center align-items-center my-3">
-                <div class="card text-bg-light my-3 w-100 h-100">
-                    <a class="text-decoration-none text-dark" href="{{path('admin_product_index')}}">
-                        <div class="card-header">Les produits</div>
-                    </a>
-                    <div class="card-body">
-                        <p class="card-text">{{products|length}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex justify-content-center align-items-center my-3">
-                <div class="card text-bg-light my-3 w-100 h-100">
-                    <a class="text-decoration-none text-dark" href="{{path('admin_formule_index')}}">
-                        <div class="card-header">Les formules</div>
-                    </a>
-                    <div class="card-body">
-                        <p class="card-text">{{formules|length}}</p>
-                    </div>
-                </div>
-            </div>
+    <style>
+        .dashboard-header {
+            margin-bottom: 40px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .card-body {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .card-text {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .card.bg-category {
+            background-color: #f8d7da; /* Bootstrap light red */
+        }
+
+        .card.bg-product {
+            background-color: #d4edda; /* Bootstrap light green */
+        }
+
+        .card.bg-formula {
+            background-color: #cce5ff; /* Bootstrap light blue */
+        }
+
+        .card.bg-user {
+            background-color: #fff3cd; /* Bootstrap light yellow */
+        }
+
+        .card.bg-contact {
+            background-color: #e2e3e5; /* Bootstrap light grey */
+        }
+
+        .card.bg-table {
+            background-color: #d6e9c6; /* Bootstrap light greenish */
+        }
+
+        .card-header a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .card-header a:hover {
+            color: #0056b3; /* Bootstrap primary color */
+        }
+    </style>
+
+    <div class="container">
+        <div class="dashboard-header text-center">
+            <h1 class="display-4 mb-3">Bienvenue !</h1>
+            <h2 class="display-6">Espace Administration Du Restaurant {{ app.user.firstName }} {{ app.user.lastName }}</h2>
+        </div>
         <div class="row">
-            <div class="col-md-3 d-flex justify-content-center align-items-center my-3">
-                <div class="card text-bg-light my-3 w-100 h-100">
-                    <a class="text-decoration-none text-dark" href="{{path('admin_user_index')}}">
+            <div class="col-md-4 mb-4">
+                <div class="card bg-category text-dark">
+                    <a href="{{ path('admin_category_index') }}" class="text-decoration-none">
+                        <div class="card-header">Les catégories</div>
+                        <div class="card-body">
+                            <p class="card-text">{{ categories|length }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-product text-dark">
+                    <a href="{{ path('admin_product_index') }}" class="text-decoration-none">
+                        <div class="card-header">Les produits</div>
+                        <div class="card-body">
+                            <p class="card-text">{{ products|length }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-formula text-dark">
+                    <a href="{{ path('admin_formule_index') }}" class="text-decoration-none">
+                        <div class="card-header">Les formules</div>
+                        <div class="card-body">
+                            <p class="card-text">{{ formules|length }}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-user text-dark">
+                    <a href="{{ path('admin_user_index') }}" class="text-decoration-none">
                         <div class="card-header">Les utilisateurs</div>
+                        <div class="card-body">
+                            <p class="card-text">{{ users|length }}</p>
+                        </div>
                     </a>
-                    <div class="card-body">
-                        <p class="card-text">{{users|length}}</p>
-                    </div>
                 </div>
             </div>
-            <div class="col-md-3 d-flex justify-content-center align-items-center my-3">
-                <div class="card text-bg-light my-3 w-100 h-100">
-                    <a class="text-decoration-none text-dark" href="{{path('admin_contact_index')}}">
+            <div class="col-md-4 mb-4">
+                <div class="card bg-contact text-dark">
+                    <a href="{{ path('admin_contact_index') }}" class="text-decoration-none">
                         <div class="card-header">Les contacts</div>
+                        <div class="card-body">
+                            <p class="card-text">{{ contacts|length }}</p>
+                        </div>
                     </a>
-                    <div class="card-body">
-                        <p class="card-text">{{contacts|length}}</p>
-                    </div>
                 </div>
             </div>
-           <div class="col-md-3 d-flex justify-content-center align-items-center my-3">
-                <div class="card text-bg-light my-3 w-100 h-100">
-                    <a class="text-decoration-none text-dark" href="{{path('admin_table_index')}}">
+            <div class="col-md-4 mb-4">
+                <div class="card bg-table text-dark">
+                    <a href="{{ path('admin_table_index') }}" class="text-decoration-none">
                         <div class="card-header">Les tables</div>
+                        <div class="card-body">
+                            <p class="card-text">{{ tables|length }}</p>
+                        </div>
                     </a>
-                    <div class="card-body">
-                        <p class="card-text">{{tables|length}}</p>
-                    </div>
                 </div>
             </div>
         </div>

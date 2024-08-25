@@ -71,8 +71,8 @@
 
 .btn-banner:hover {
     background-color: rgba(255, 255, 255, 0.1); /* Light white background on hover */
-    color: gold; /* Gold text color on hover */
-    border-color: gold; /* Change border color on hover */
+    color:rgb(147, 125, 0); /* Gold text color on hover */
+    border-color: rgb(147, 125, 0); /* Change border color on hover */
     transform: translateX(-50%) scale(1.05); /* Slightly enlarge on hover */
 }
 
@@ -337,6 +337,9 @@ img {
     .nav-links.active {
         display: flex;
     }
+    .btn-banner {
+        display: non;
+    }
 }
 
 /**/
@@ -400,3 +403,4 @@ img {
 .scrollToTopBtn:hover {
     background-color: #333;
 }
+
