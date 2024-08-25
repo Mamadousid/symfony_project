@@ -62,59 +62,17 @@
     
 
 
-    <footer class="container-fluid text-center mt-5 p-3" style="background-color: #000000">
-        <div class="container-fluid text-white">
-            <div class="row">
-                <!-- Adresse du restaurant -->
-                <div class="col-12 col-md-12 col-lg-4">
-                    <h3>Adresse</h3>
-                    <p class="text-footer">Le Toque'OR</p>
-                    <p class="text-footer">56 Boulevard Magenta</p>
-                    <p class="text-footer">75008 Paris</p>
-                    <p class="text-footer">01 01 01 01 01</p>
-                </div>
-
-                <!-- Horaires d'ouverture -->
-                <div class="col-12 col-md-12 col-lg-4">
-                    <h3>Horaires</h3>
-                    <p class="text-footer">Lundi-jeu: 19h00 à 00h00</p>
-                    <p class="text-footer">Ven: 19h00 à 01h00</p>
-                    <p class="text-footer">Sam: 12h00 à 01h00</p>
-                    <p class="text-footer">Dim: 12h00 à 02h00</p>
-                </div>
-
-                <!-- Informations juridiques et réseaux sociaux -->
-                <div class="col-12 col-md-12 col-lg-4">
-                    <div>
-                        <h3>Juridique</h3>
-                        <div><a class="text-footer" style="font-size: 13px;" href="">Politique de confidentialité</a></div>
-                        <div class="mb-5"><a class="text-footer" style="font-size: 13px;" href="">Mentions légales</a></div>
-                    </div>
-
-                    <div class="mb-5">
-                        <h3 style="font-size: 13px;">Suivez-nous !</h3>
-                        <div>
-                            <a href="https://www.instagram.com/" target="_blank">
-                                <img class="mx-1" width="30" height="30" src="/images/instagram.png" alt="Icone Instagram">
-                            </a>
-                            <a href="https://www.snapchat.com/" target="_blank">
-                                <img class="mx-1" width="30" height="30" src="/images/snapchat.png" alt="Icone Snapchat">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Copyright -->
-            <div id="copyright" class="footer-container">
-                © Toque'OR Paris. Tous Droits Réservés / All Rights Reserved.
-            </div>
-        </div>
-    </footer>
+ 
 
          <!-- Inclusion des fichiers JavaScript via Webpack Encore -->
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
+     <script>
+      document.querySelector('.burger').addEventListener('click', function() {
+         document.querySelector('.nav-links').classList.toggle('active');
+      });
+    </script>
   </body>
    
 </html>

@@ -31,7 +31,7 @@
                 <img src="/images/logo.png" alt="Logo du Restaurant Toque'OR">
             </a>
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" style="position: relative;">
             <li><a href="{{ path('visitor_wellcome_index') }}">Accueil</a></li>
             <li><a href="{{ path('visitor_main_index') }}">Menu</a></li>
             <li><a href="{{ path('visitor_booking_create') }}">Réservation</a></li>
@@ -70,6 +70,10 @@
         </div>
     </nav>
 
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+
     <!-- Contenu spécifique à chaque page -->
     {% block main %}{% endblock %}
 
@@ -79,38 +83,50 @@
     </button>
 
     <!-- Pied de page -->
-    <footer class="container-fluid text-center mt-5 p-3" style="background-color: #000000;">
-        <div class="container text-white">
+<!-- Pied de page -->
+    <footer class="container-fluid text-center mt-5 p-3" style="background-color: #000000">
+        <div class="container-fluid text-white">
             <div class="row">
-                <div class="col-12 col-md-4">
+                <!-- Adresse du restaurant -->
+                <div class="col-12 col-md-12 col-lg-4">
                     <h3>Adresse</h3>
                     <p class="text-footer">Le Toque'OR</p>
                     <p class="text-footer">56 Boulevard Magenta</p>
                     <p class="text-footer">75008 Paris</p>
                     <p class="text-footer">01 01 01 01 01</p>
                 </div>
-                <div class="col-12 col-md-4">
+
+                <!-- Horaires d'ouverture -->
+                <div class="col-12 col-md-12 col-lg-4">
                     <h3>Horaires</h3>
                     <p class="text-footer">Lundi-jeu: 19h00 à 00h00</p>
                     <p class="text-footer">Ven: 19h00 à 01h00</p>
                     <p class="text-footer">Sam: 12h00 à 01h00</p>
                     <p class="text-footer">Dim: 12h00 à 02h00</p>
                 </div>
-                <div class="col-12 col-md-4">
-                    <h3>Juridique</h3>
-                    <div><a class="text-footer" href="">Politique de confidentialité</a></div>
-                    <div><a class="text-footer" href="">Mentions légales</a></div>
-                    <div class="mt-3">
-                        <h3>Suivez-nous !</h3>
-                        <a href="https://www.instagram.com/" target="_blank">
-                            <img class="mx-1" width="30" height="30" src="./images/instagram.png" alt="Instagram">
-                        </a>
-                        <a href="https://www.snapchat.com/" target="_blank">
-                            <img class="mx-1" width="30" height="30" src="./images/snapchat.png" alt="Snapchat">
-                        </a>
+
+                <!-- Informations juridiques et réseaux sociaux -->
+                <div class="col-12 col-md-12 col-lg-4">
+                    <div>
+                        <h3>Juridique</h3>
+                        <div><a class="text-footer" style="font-size: 13px;" href="">Politique de confidentialité</a></div>
+                        <div class="mb-5"><a class="text-footer" style="font-size: 13px;" href="">Mentions légales</a></div>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 style="font-size: 13px;">Suivez-nous !</h3>
+                        <div>
+                            <a href="https://www.instagram.com/" target="_blank">
+                                <img class="mx-1" width="30" height="30" src="./images/instagram.png" alt="Icone Instagram">
+                            </a>
+                            <a href="https://www.snapchat.com/" target="_blank">
+                                <img class="mx-1" width="30" height="30" src="./images/snapchat.png" alt="Icone Snapchat">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- Copyright -->
             <div id="copyright" class="footer-container">
                 © Toque'OR Paris. Tous Droits Réservés / All Rights Reserved.
             </div>
@@ -122,6 +138,12 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 
+
+      <script>
+      document.querySelector('.burger').addEventListener('click', function() {
+         document.querySelector('.nav-links').classList.toggle('active');
+      });
+    </script>
     <!-- Script pour gérer le bouton "Remonter en haut" -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {

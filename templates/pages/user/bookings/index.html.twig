@@ -10,6 +10,8 @@
         html, body {
             height: 100%;
             margin: 0;
+            display: flex;
+            flex-direction: column;
         }
 
         .background {
@@ -17,7 +19,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            min-height: 100vh; /* Assure que l'image couvre au moins la hauteur de la vue */
+            flex: 1; /* Permet au conteneur de prendre tout l'espace disponible */
             display: flex;
             flex-direction: column;
             align-items: center; /* Centre horizontalement le contenu */
@@ -37,6 +39,10 @@
 
         th, td {
             text-align: center; /* Centre le texte dans les cellules */
+        }
+
+        footer {
+            margin-top: auto; /* Assure que le footer reste en bas de la page */
         }
     </style>
 
